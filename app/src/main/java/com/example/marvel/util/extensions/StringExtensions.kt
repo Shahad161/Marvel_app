@@ -1,4 +1,4 @@
-package com.example.marvel.util.extensions
+package com.example.marvel.ui.details
 
 import java.math.BigInteger
 import java.security.MessageDigest

@@ -1,9 +1,8 @@
 package com.example.marvel.data.remote
 
 import com.example.marvel.BuildConfig
-import com.example.marvel.util.extensions.md5
-import okhttp3.Interceptor
-import okhttp3.Response
+import com.example.marvel.ui.details.md5
+import okhttp3.*
 
 class AuthInterceptor: Interceptor {
 
