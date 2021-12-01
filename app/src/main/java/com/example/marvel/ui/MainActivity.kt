@@ -6,6 +6,7 @@ import androidx.databinding.DataBindingUtil
 import androidx.navigation.findNavController
 import androidx.navigation.ui.setupWithNavController
 import com.example.marvel.R
+import com.example.marvel.data.local.MarvelDataBase
 import com.example.marvel.databinding.ActivityMainBinding
 
 class MainActivity : AppCompatActivity() {
@@ -20,6 +21,7 @@ class MainActivity : AppCompatActivity() {
         ).also { binding ->
             binding.lifecycleOwner=this
         }
+        MarvelDataBase.init(applicationContext)
     }
 
 
