@@ -21,9 +21,7 @@ class HomeViewModel: BaseViewModel() {
     }
 
     init {
-        viewModelScope.launch {
-            repo.refreshCharacters()
-        }
+
     }
 
 }

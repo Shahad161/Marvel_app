@@ -16,7 +16,6 @@ abstract class MarvelDataBase: RoomDatabase() {
     companion object{
 
         private const val DATABASE_NAME = "MarvelDataBase"
-
         private var instance: MarvelDataBase? = null
 
         fun init(context: Context): MarvelDataBase{

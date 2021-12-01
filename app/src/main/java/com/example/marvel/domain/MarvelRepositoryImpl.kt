@@ -5,47 +5,30 @@ import com.example.marvel.data.local.entity.CharactersEntity
 import com.example.marvel.data.remote.MarvelService
 import com.example.marvel.data.remote.respons.*
 import com.example.marvel.data.remote.State
+import com.example.marvel.domain.mapper.CharacterMapper
+import com.example.marvel.domain.model.Characters
 import kotlinx.coroutines.flow.*
 import retrofit2.Response
+import java.lang.Exception
 
 class MarvelRepositoryImpl: MarvelRepository {
 
-    val apiService = MarvelService.apiService
-    val charactersDao = MarvelDataBase.getInstance().MarvelDao()
-
-    override fun getCharacter(): Flow<List<CharactersEntity>> =
-        charactersDao.getCharacters()
+    private val apiService = MarvelService.apiService
+    private val characterMapper = CharacterMapper()
 
 
-    override suspend fun refreshCharacters() {
-        val item =apiService.getCharacters().body()?.dataContainer?.items?.map {
-            CharactersEntity(
-                id = it.id?.toLong() ?: 0L,
-                name = it.name ?: "",
-                description = it.description ?: "",
-                modified = it.modified ?: "",
-                imgUrl = "${it.thumbnail?.path}.${it.thumbnail?.extension} ?: 0 "
-            )
+    override fun getCharacter(): Flow<State<List<Characters>?>> {
+        return flow {
+            emit(State.Loading)
+            try {
+                val charactersa = apiService.getCharacters().body()?.dataContainer?.items?.map {
+                    characterMapper.map(it)
+                }
+                emit(State.Success(charactersa))
+            }catch(e: Exception){
+                emit(State.Error(e.message.toString()))
+            }
         }
-        item?.let { charactersDao.insertCharacters(it) }
     }
 
-//    fun <T> wrapWithFlow(function: suspend () -> Response<T>): Flow<State<T?>> {
-//        return flow {
-//            emit(State.Loading)
-//            try {
-//                emit(checkIsSuccessful(function()))
-//            }catch (e: Exception) {
-//                emit(State.Error(e.message.toString()))
-//            }
-//        }
-//    }
-//
-//    private fun <T> checkIsSuccessful(response: Response<T>): State<T?> =
-//        if (response.isSuccessful) {
-//            State.Success(response.body())
-//        }
-//        else {
-//            State.Error(response.message())
-//        }
 }
