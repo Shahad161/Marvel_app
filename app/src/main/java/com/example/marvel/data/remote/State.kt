@@ -1,4 +1,4 @@
-package com.example.marvel.util
+package com.example.marvel.data.remote
 
 sealed class State<out T> {
 

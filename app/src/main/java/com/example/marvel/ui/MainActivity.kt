@@ -3,6 +3,8 @@ package com.example.marvel.ui
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import androidx.databinding.DataBindingUtil
+import androidx.navigation.findNavController
+import androidx.navigation.ui.setupWithNavController
 import com.example.marvel.R
 import com.example.marvel.databinding.ActivityMainBinding
 
@@ -23,8 +25,8 @@ class MainActivity : AppCompatActivity() {
 
 //    override fun onResume() {
 //        super.onResume()
-////        binding.navigation
-////            .setupWithNavController(findNavController(R.id.fragment_host))
+//        binding.navigation
+//            .setupWithNavController(findNavController(R.id.fragment_host))
 //    }
 //
 //    override fun onSupportNavigateUp(): Boolean {

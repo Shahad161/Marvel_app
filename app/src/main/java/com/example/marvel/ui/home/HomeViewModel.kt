@@ -6,6 +6,7 @@ import androidx.lifecycle.asLiveData
 import androidx.lifecycle.viewModelScope
 import com.example.marvel.domain.MarvelRepository
 import com.example.marvel.ui.base.BaseViewModel
+import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.launch
 
 class HomeViewModel: BaseViewModel() {
@@ -13,7 +14,9 @@ class HomeViewModel: BaseViewModel() {
 
     fun jildsa(){
         viewModelScope.launch{
-            Log.i("kkk", MarvelRepository.getkkk().body().toString())
+            MarvelRepository.getkkk().collect {
+                Log.i("kkkzzz", it.toData().toString())
+            }
         }
     }
 

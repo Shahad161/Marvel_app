@@ -1,9 +1,9 @@
 package com.example.marvel.ui.base
 
 import androidx.lifecycle.*
+import com.example.marvel.data.remote.State
 import kotlinx.coroutines.flow.*
 import kotlinx.coroutines.*
-import com.example.marvel.util.State
 
 abstract class BaseViewModel: ViewModel() {
 
