@@ -1,8 +1,7 @@
 package com.example.marvel.data.remote
 
 import com.example.marvel.BuildConfig
-import com.example.marvel.data.remote.respons.BaseResponse
-import com.example.marvel.data.remote.respons.CharacterDto
+import com.example.marvel.data.remote.respons.*
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
 import retrofit2.*
@@ -19,7 +18,8 @@ interface MarvelService {
     companion object{
         private val client = OkHttpClient
             .Builder()
-            .addInterceptor(HttpLoggingInterceptor().apply{ setLevel(HttpLoggingInterceptor.Level.BODY)})
+            .addInterceptor(HttpLoggingInterceptor()
+                .apply{ setLevel(HttpLoggingInterceptor.Level.BODY)})
             .addInterceptor(AuthInterceptor())
             .build()
 

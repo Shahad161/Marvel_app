@@ -1,7 +1,6 @@
 package com.example.marvel.data.remote.respons
 
 
-import android.media.metrics.Event
 import com.google.gson.annotations.SerializedName
 
 data class CharacterDto(

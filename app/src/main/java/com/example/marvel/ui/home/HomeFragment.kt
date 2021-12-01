@@ -5,28 +5,30 @@ import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.fragment.app.activityViewModels
 import androidx.lifecycle.asLiveData
 import com.example.marvel.R
 import com.example.marvel.databinding.FragmentHomeBinding
 import com.example.marvel.domain.MarvelRepository
 import com.example.marvel.ui.base.BaseFragment
+import kotlinx.coroutines.Dispatchers
 
 class HomeFragment : BaseFragment<FragmentHomeBinding, HomeViewModel>() {
 
+    override val viewModel: HomeViewModel by activityViewModels()
     override val layoutId: Int = R.layout.fragment_home
-    override val viewModelClass: Class<HomeViewModel> = HomeViewModel::class.java
+    override val viewModelClass = HomeViewModel::class.java
 
-    override fun onCreateView(
-        inflater: LayoutInflater, container: ViewGroup?,
-        savedInstanceState: Bundle?,
-    ): View? {
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
         setUp()
-        return inflater.inflate(R.layout.fragment_home, container, false)
     }
 
     fun setUp(){
-        Log.i("kkk", MarvelRepository.getkkk().asLiveData().value.toString())
+        viewModel.jildsa()
     }
+
+
 
 
 }

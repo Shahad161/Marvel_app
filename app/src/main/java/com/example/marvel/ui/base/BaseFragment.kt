@@ -4,13 +4,13 @@ import android.os.Bundle
 import android.view.*
 import androidx.databinding.*
 import androidx.fragment.app.Fragment
+import androidx.lifecycle.ViewModelProvider
 import com.example.marvel.BR
 
-abstract class BaseFragment<VB : ViewDataBinding, VM : BaseViewModel> : Fragment() {
-
+abstract class BaseFragment<VB: ViewDataBinding, VM: BaseViewModel> : Fragment() {
 
     abstract val layoutId: Int
-    lateinit var viewModel: VM
+    abstract val viewModel: VM
     abstract val viewModelClass: Class<VM>
     private lateinit var _binding: VB
     val binding: VB
@@ -20,7 +20,7 @@ abstract class BaseFragment<VB : ViewDataBinding, VM : BaseViewModel> : Fragment
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?
-    ) : View? {
+    ): View? {
         _binding = DataBindingUtil.inflate(inflater, layoutId, container, false)
         _binding.apply {
             lifecycleOwner = this@BaseFragment

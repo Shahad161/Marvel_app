@@ -15,14 +15,12 @@ class AuthInterceptor: Interceptor {
         with(chain.request()){
             url.newBuilder().apply {
 
-                addQueryParameter(API_KEY_PARAM, apikey)
                 addQueryParameter(TIMESTAMP_PARAM, timestamp)
+                addQueryParameter(API_KEY_PARAM, apikey)
                 addQueryParameter(HASH_PARAM, hash)
 
             }.build().also {
-
                 return chain.proceed(this.newBuilder().url(it).build())
-
             }
         }
     }
