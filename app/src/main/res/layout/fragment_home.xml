@@ -4,6 +4,10 @@
 
     <data>
 
+        <variable
+            name="viewModel"
+            type="com.example.marvel.ui.home.HomeViewModel" />
+
     </data>
 
     <FrameLayout
