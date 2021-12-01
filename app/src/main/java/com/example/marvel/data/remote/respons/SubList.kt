@@ -1,7 +1,5 @@
 package com.example.marvel.data.remote.respons
 
-
-import com.example.marvel.data.remote.response1.ItemX
 import com.google.gson.annotations.SerializedName
 
 data class SubList(
