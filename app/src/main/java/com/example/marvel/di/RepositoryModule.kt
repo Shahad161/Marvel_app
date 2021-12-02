@@ -15,9 +15,10 @@ object RepositoryModule {
     @Provides
     fun provideRepository(characterMapper: CharacterMapper,
                           comicsMapper: ComicsMapper,
+                          comicsObjMapper: ComicsObjectMapper,
                           marvelDataBase: MarvelDataBase,
                           apiService: MarvelService): MarvelRepository{
-        return MarvelRepositoryImpl(apiService, marvelDataBase, characterMapper, comicsMapper)
+        return MarvelRepositoryImpl(apiService, marvelDataBase, characterMapper, comicsMapper, comicsObjMapper)
     }
 
     @Provides
@@ -26,6 +27,7 @@ object RepositoryModule {
     @Provides
     fun provideComicsEntityMapper() = ComicsMapper()
 
-
+    @Provides
+    fun provideComicsObjMapper() = ComicsObjectMapper()
 
 }

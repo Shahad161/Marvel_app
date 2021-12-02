@@ -4,7 +4,6 @@ data class Comics(
     val id: Int,
     val title: String,
     val imgUrl: String,
-    val modified: String,
     val pageCount: Int,
     val description: String
 )

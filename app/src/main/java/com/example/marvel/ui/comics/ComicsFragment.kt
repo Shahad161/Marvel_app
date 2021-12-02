@@ -1,6 +1,7 @@
 package com.example.marvel.ui.comics
 
 import android.os.Bundle
+import android.view.View
 import androidx.fragment.app.viewModels
 import com.example.marvel.R
 import com.example.marvel.databinding.FragmentComicsBinding
@@ -16,12 +17,18 @@ class ComicsFragment: BaseFragment<FragmentComicsBinding, ComicsViewModel>() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setUp()
     }
 
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+        setUp()
+
+    }
 
     private fun setUp(){
         viewModel.jildsa()
+        binding.comicsRecycler.adapter =
+            ComicsRecyclerAdapter(mutableListOf(), this.viewModel)
     }
 
 }

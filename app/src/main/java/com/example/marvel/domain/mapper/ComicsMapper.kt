@@ -26,9 +26,8 @@ class ComicsObjectMapper:Mapper<ComicsEntity, Comics> {
             id = input.id.toInt(),
             title = input.title ,
             imgUrl = input.imgUrl,
-            modified = input.modified,
             pageCount = input.pageCount,
-            description =input.description,
+            description = input.description,
         )
     }
 

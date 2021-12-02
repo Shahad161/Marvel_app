@@ -4,7 +4,6 @@ import android.os.Bundle
 import android.view.*
 import androidx.databinding.*
 import androidx.fragment.app.Fragment
-import androidx.lifecycle.ViewModelProvider
 import com.example.marvel.BR
 
 abstract class BaseFragment<VB: ViewDataBinding, VM: BaseViewModel> : Fragment() {
@@ -28,5 +27,6 @@ abstract class BaseFragment<VB: ViewDataBinding, VM: BaseViewModel> : Fragment()
             return root
         }
     }
+
 
 }

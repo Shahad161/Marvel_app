@@ -1,11 +1,14 @@
 package com.example.marvel.domain
 
+import androidx.lifecycle.asLiveData
 import com.example.marvel.data.local.MarvelDataBase
 import com.example.marvel.data.local.entity.ComicsEntity
 import com.example.marvel.domain.mapper.CharacterMapper
 import com.example.marvel.domain.model.Characters
 import com.example.marvel.data.remote.*
 import com.example.marvel.domain.mapper.ComicsMapper
+import com.example.marvel.domain.mapper.ComicsObjectMapper
+import com.example.marvel.domain.model.Comics
 import kotlinx.coroutines.flow.*
 import java.lang.Exception
 
@@ -13,8 +16,8 @@ class MarvelRepositoryImpl(
     private val apiService: MarvelService,
     private val marvelDataBase: MarvelDataBase,
     private val characterMapper: CharacterMapper,
-    private val comicsMapper: ComicsMapper
-
+    private val comicsMapper: ComicsMapper,
+    private val comicsObjMapper: ComicsObjectMapper
 ): MarvelRepository {
 
     override fun getCharacter(): Flow<State<List<Characters>?>> {
@@ -31,8 +34,19 @@ class MarvelRepositoryImpl(
         }
     }
 
-    override fun getComics(): Flow<List<ComicsEntity>> {
-        return marvelDataBase.MarvelDao().getComics()
+
+
+    override fun getComics(): Flow<State<List<Comics>>> {
+        return flow {
+            emit(State.Loading)
+            try {
+                val charactersa= marvelDataBase.MarvelDao().getComics().collect {
+                    emit(State.Success(it.map { comicsObjMapper.map(it) }))
+                }
+            }catch(e: Exception){
+                emit(State.Error(e.message.toString()))
+            }
+        }
     }
 
     override suspend fun getRefreshComics() {

@@ -2,11 +2,15 @@ package com.example.marvel.ui.base
 
 import android.view.*
 import androidx.databinding.*
+import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
+import com.example.marvel.BR
+import dagger.hilt.android.AndroidEntryPoint
+
 
 abstract class BaseRecyclerAdapter<T>(
     private var items: List<T>,
-    private val listener: BaseInteractionListener
+    private val listener: BaseInteractionListener,
 ): RecyclerView.Adapter<BaseRecyclerAdapter.BaseViewHolder>(){
 
     abstract val layoutId: Int
@@ -33,23 +37,23 @@ abstract class BaseRecyclerAdapter<T>(
         )
 
     override fun onBindViewHolder(holder: BaseViewHolder, position: Int) {
-
-        if (holder is ItemViewHolder && items.isNotEmpty() ) {
-//                holder.binding.setVariable(BR.item, items[position])
-//                holder.binding.setVariable(BR.listener, listener)
+        when(holder){
+            is ItemViewHolder -> {
+                holder.binding.apply {
+                    setVariable(BR.item,items[position])
+                    setVariable(BR.listener, listener)
+                }
+            }
         }
     }
 
     override fun getItemCount(): Int = items.size
 
-//    fun setItems(newItems: List<T>) {
-//        val diffResult = DiffUtil.calculateDiff(AppDiffUtil(items,
-//            newItems,
-//            ::areItemsTheSame,
-//            ::areContentSame))
-//        items = newItems
-//        diffResult.dispatchUpdatesTo(this)
-//    }
+    fun setItems(newItems: List<T>?){
+        items = newItems!!
+        notifyDataSetChanged()
+
+    }
 
     fun getItems() = items
 
