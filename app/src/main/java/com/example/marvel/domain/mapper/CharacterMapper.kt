@@ -11,4 +11,5 @@ class CharacterMapper: Mapper<CharacterDto, Characters> {
             imgUrl = "${input.thumbnail?.path}.${input.thumbnail?.extension}"
         )
     }
+
 }

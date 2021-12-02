@@ -14,11 +14,11 @@ class HomeViewModel @Inject constructor(
     var repository: MarvelRepository
 ): BaseViewModel() {
 
-    fun jildsa(){
-        viewModelScope.launch{
-            repository.getCharacter().collect {
-                Log.i("kkk", it.toString())
-            }
-        }
-    }
+//    fun jildsa(){
+//        viewModelScope.launch{
+//            repository.getComics().collect {
+//                Log.i("kkk", it.toString())
+//            }
+//        }
+//    }
 }

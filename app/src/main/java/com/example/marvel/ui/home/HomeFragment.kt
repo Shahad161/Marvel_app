@@ -23,7 +23,7 @@ class HomeFragment : BaseFragment<FragmentHomeBinding, HomeViewModel>() {
     }
 
     private fun setUp(){
-        viewModel.jildsa()
+//        viewModel.jildsa()
     }
 
 }

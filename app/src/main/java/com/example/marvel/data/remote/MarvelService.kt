@@ -1,16 +1,16 @@
 package com.example.marvel.data.remote
 
-import com.example.marvel.BuildConfig
 import com.example.marvel.data.remote.respons.*
-import okhttp3.OkHttpClient
-import okhttp3.logging.HttpLoggingInterceptor
-import retrofit2.*
-import retrofit2.converter.gson.GsonConverterFactory
+import com.example.marvel.data.remote.respons.comics.ComicsDto
 import retrofit2.http.GET
+import retrofit2.*
+
 
 interface MarvelService {
 
     @GET("characters")
-    suspend fun getCharacters():Response<BaseResponse<CharacterDto>>
+    suspend fun getCharacters(): Response<BaseResponse<CharacterDto>>
 
+    @GET("comics")
+    suspend fun getComics(): Response<BaseResponse<ComicsDto>>
 }

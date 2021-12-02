@@ -17,4 +17,8 @@
         android:id="@+id/searchFragment"
         android:name="com.example.marvel.ui.search.SearchFragment"
         android:label="SearchFragment" />
+    <fragment
+        android:id="@+id/comicsFragment"
+        android:name="com.example.marvel.ui.comics.ComicsFragment"
+        android:label="ComicsFragment" />
 </navigation>

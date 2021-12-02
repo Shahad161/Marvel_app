@@ -1,27 +1,31 @@
 package com.example.marvel.di
 
+import com.example.marvel.data.local.MarvelDataBase
 import com.example.marvel.data.remote.MarvelService
-import com.example.marvel.domain.MarvelRepository
-import com.example.marvel.domain.MarvelRepositoryImpl
-import com.example.marvel.domain.mapper.CharacterMapper
-import dagger.Module
-import dagger.Provides
+import com.example.marvel.domain.*
+import com.example.marvel.domain.mapper.*
+import dagger.*
 import dagger.hilt.InstallIn
-import dagger.hilt.android.components.ActivityComponent
 import dagger.hilt.components.SingletonComponent
-import javax.inject.Singleton
 
 @Module
 @InstallIn(SingletonComponent::class)
 object RepositoryModule {
 
     @Provides
-    fun provideRepository(characterMapper: CharacterMapper, apiService: MarvelService): MarvelRepository{
-        return MarvelRepositoryImpl(apiService, characterMapper)
+    fun provideRepository(characterMapper: CharacterMapper,
+                          comicsMapper: ComicsMapper,
+                          marvelDataBase: MarvelDataBase,
+                          apiService: MarvelService): MarvelRepository{
+        return MarvelRepositoryImpl(apiService, marvelDataBase, characterMapper, comicsMapper)
     }
 
     @Provides
     fun provideCharacterMapper() = CharacterMapper()
+
+    @Provides
+    fun provideComicsEntityMapper() = ComicsMapper()
+
 
 
 }

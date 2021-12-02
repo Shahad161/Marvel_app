@@ -1,14 +1,20 @@
 package com.example.marvel.domain
 
+import com.example.marvel.data.local.MarvelDataBase
+import com.example.marvel.data.local.entity.ComicsEntity
 import com.example.marvel.domain.mapper.CharacterMapper
 import com.example.marvel.domain.model.Characters
 import com.example.marvel.data.remote.*
+import com.example.marvel.domain.mapper.ComicsMapper
 import kotlinx.coroutines.flow.*
 import java.lang.Exception
 
 class MarvelRepositoryImpl(
     private val apiService: MarvelService,
-    private val characterMapper: CharacterMapper
+    private val marvelDataBase: MarvelDataBase,
+    private val characterMapper: CharacterMapper,
+    private val comicsMapper: ComicsMapper
+
 ): MarvelRepository {
 
     override fun getCharacter(): Flow<State<List<Characters>?>> {
@@ -23,6 +29,17 @@ class MarvelRepositoryImpl(
                 emit(State.Error(e.message.toString()))
             }
         }
+    }
+
+    override fun getComics(): Flow<List<ComicsEntity>> {
+        return marvelDataBase.MarvelDao().getComics()
+    }
+
+    override suspend fun getRefreshComics() {
+        val comics = apiService.getComics().body()?.dataContainer?.items?.map {
+            comicsMapper.map(it)
+        }
+        comics?.let { marvelDataBase.MarvelDao().insertComics(it.map { it }) }
     }
 
 }

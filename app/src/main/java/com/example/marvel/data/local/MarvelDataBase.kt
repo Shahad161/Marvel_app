@@ -4,30 +4,12 @@ import android.content.Context
 import androidx.room.*
 import com.example.marvel.data.local.daos.MarvelDao
 import com.example.marvel.data.local.entity.CharactersEntity
+import com.example.marvel.data.local.entity.ComicsEntity
 
 
-@Database(entities = [CharactersEntity::class], version = 1)
+@Database(entities = [CharactersEntity::class, ComicsEntity::class], version = 1)
 abstract class MarvelDataBase: RoomDatabase() {
 
     abstract fun MarvelDao(): MarvelDao
 
-    companion object{
-
-        private const val DATABASE_NAME = "MarvelDataBase"
-        private var instance: MarvelDataBase? = null
-
-        fun init(context: Context): MarvelDataBase{
-            return instance ?: synchronized(this){ buildDatabase(context)
-                .also{ dataBase -> instance = dataBase }
-            }
-        }
-
-        fun getInstance() = instance!!
-
-        private fun buildDatabase(context: Context): MarvelDataBase{
-            return Room.databaseBuilder(context, MarvelDataBase::class.java, DATABASE_NAME)
-                .build()
-        }
-
-    }
 }
