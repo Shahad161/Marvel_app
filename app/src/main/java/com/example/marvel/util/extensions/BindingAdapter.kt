@@ -1,6 +1,7 @@
 package com.example.marvel.util.extensions
 
 import android.util.Log
+import android.widget.EditText
 import android.widget.ImageView
 import androidx.databinding.BindingAdapter
 import androidx.recyclerview.widget.RecyclerView
@@ -20,4 +21,12 @@ fun <T> setRecyclerItems(view: RecyclerView, items: List<T>?) {
 @BindingAdapter(value = ["app:imageFromUrl"])
 fun setImage(view: ImageView, url: String?) {
     view.load(url)
+}
+
+@BindingAdapter(value = ["app:onclickSearch"])
+fun onclickSearch(view: EditText, function: () -> Unit) {
+    view.setOnEditorActionListener { _, _, _ ->
+        function()
+        return@setOnEditorActionListener false
+    }
 }

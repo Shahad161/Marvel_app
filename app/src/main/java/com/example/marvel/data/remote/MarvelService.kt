@@ -4,6 +4,7 @@ import com.example.marvel.data.remote.respons.*
 import com.example.marvel.data.remote.respons.comics.ComicsDto
 import retrofit2.http.GET
 import retrofit2.*
+import retrofit2.http.Query
 
 
 interface MarvelService {
@@ -19,5 +20,10 @@ interface MarvelService {
 
     @GET("stories")
     suspend fun getStories(): Response<BaseResponse<StoriesDto>>
+
+    @GET("characters")
+    suspend fun getCharacterByName(
+        @Query("name") name: String,
+        ): Response<BaseResponse<CharacterDto>>
 
 }

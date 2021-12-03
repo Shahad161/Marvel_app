@@ -9,7 +9,8 @@ import com.example.marvel.data.local.entity.*
     CharactersEntity::class,
     ComicsEntity::class,
     SeriesEntity::class,
-    StoriesEntity::class
+    StoriesEntity::class,
+    SearchCharacterResultEntity::class
                      ], version = 1)
 
 abstract class MarvelDataBase: RoomDatabase() {

@@ -12,12 +12,15 @@ class MarvelRepositoryImpl(
     private val apiService: MarvelService,
     private val marvelDataBase: MarvelDataBase,
     private val characterMapper: CharacterMapper,
+    private val characterEntityMapper: CharacterEntityMapper,
     private val comicsEntityMapper: ComicsEntityMapper,
     private val comicsObjMapper: ComicsMapper,
     private val seriesEntityMapper: SeriesEntityMapper,
     private val seriesMapper: SeriesMapper,
     private val storiesMapper: StoriesMapper,
-    private val storiesEntityMapper: StoriesEntityMapper
+    private val storiesEntityMapper: StoriesEntityMapper,
+    private val searchCharacterResultMapper: SearchCharacterResultMapper,
+    private val searchCharacterResultEntityMapper: SearchCharacterResultEntityMapper
 
 ): MarvelRepository {
 
@@ -82,6 +85,7 @@ class MarvelRepositoryImpl(
                 marvelDataBase.MarvelDao().getStories().collect {
                     emit(State.Success(it.map{ storiesMapper.map(it) }))
                 }
+
             }catch(e: Exception){
                 emit(State.Error(e.message.toString()))
             }
@@ -91,7 +95,29 @@ class MarvelRepositoryImpl(
     override suspend fun getRefreshStories() {
         apiService.getStories().body()?.dataContainer?.items?.map {
             storiesEntityMapper.map(it)
-        }?.let { marvelDataBase.MarvelDao().insertStories(it.map { it }) }    }
+        }?.let { marvelDataBase.MarvelDao().insertStories(it.map {
+            it }) }
+    }
+
+    override fun getCharacterByName(): Flow<State<Characters>> {
+        return flow {
+            emit(State.Loading)
+            try {
+                marvelDataBase.MarvelDao().getSearchCharacterResult().collect {
+                    it.map {  searchCharacterResultMapper.map(it)}.map {
+                        emit(State.Success(it))
+                    }
+                }
+            }catch(e: Exception){
+                emit(State.Error(e.message.toString()))
+            }
+        }
+    }
+
+    override suspend fun getRefreshCharacterByName(name: String) {
+        apiService.getCharacterByName(name).body()?.dataContainer?.items?.map {
+            searchCharacterResultEntityMapper.map(it)
+        }?.let { marvelDataBase.MarvelDao().insertSearchCharacterResult(it.map { it }) }    }
 
 
 }
