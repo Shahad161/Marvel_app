@@ -10,19 +10,25 @@ import androidx.lifecycle.ViewModel
 import com.example.marvel.R
 import com.example.marvel.databinding.FragmentSeriesBinding
 import com.example.marvel.ui.base.BaseFragment
+import com.example.marvel.ui.comics.ComicsRecyclerAdapter
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
 class SeriesFragment : BaseFragment<FragmentSeriesBinding, SeriesViewModel>() {
 
-
     override val layoutId: Int = R.layout.fragment_series
     override val viewModel: SeriesViewModel by viewModels()
     override val viewModelClass = SeriesViewModel::class.java
 
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+        setUp()
+    }
 
+    private fun setUp(){
+        viewModel.jildsa()
+        binding.seriesRecycler.adapter =
+            SeriesRecyclerAdapter(mutableListOf(), this.viewModel)
     }
 
 

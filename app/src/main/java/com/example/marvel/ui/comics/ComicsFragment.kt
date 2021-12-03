@@ -15,10 +15,6 @@ class ComicsFragment: BaseFragment<FragmentComicsBinding, ComicsViewModel>() {
     override val layoutId: Int = R.layout.fragment_comics
     override val viewModelClass = ComicsViewModel::class.java
 
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-    }
-
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         setUp()

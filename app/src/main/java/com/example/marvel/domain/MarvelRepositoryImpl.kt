@@ -2,13 +2,12 @@ package com.example.marvel.domain
 
 import android.util.Log
 import com.example.marvel.data.local.MarvelDataBase
-import com.example.marvel.domain.mapper.CharacterMapper
 import com.example.marvel.domain.model.Characters
 import com.example.marvel.data.remote.*
-import com.example.marvel.domain.mapper.ComicsEntityMapper
-import com.example.marvel.domain.mapper.ComicsMapper
-import com.example.marvel.domain.mapper.SeriesEntityMapper
+import com.example.marvel.data.remote.respons.SeriesDto
+import com.example.marvel.domain.mapper.*
 import com.example.marvel.domain.model.Comics
+import com.example.marvel.domain.model.Series
 import kotlinx.coroutines.flow.*
 import java.lang.Exception
 
@@ -18,7 +17,9 @@ class MarvelRepositoryImpl(
     private val characterMapper: CharacterMapper,
     private val comicsEntityMapper: ComicsEntityMapper,
     private val comicsObjMapper: ComicsMapper,
-    private val seriesEntityMapper: SeriesEntityMapper
+    private val seriesEntityMapper: SeriesEntityMapper,
+    private val seriesMapper: SeriesMapper
+
 ): MarvelRepository {
 
     override fun getCharacter(): Flow<State<List<Characters>?>> {
@@ -41,7 +42,7 @@ class MarvelRepositoryImpl(
         return flow {
             emit(State.Loading)
             try {
-                val charactersa= marvelDataBase.MarvelDao().getComics().collect {
+                marvelDataBase.MarvelDao().getComics().collect {
                     emit(State.Success(it.map { comicsObjMapper.map(it) }))
                 }
             }catch(e: Exception){
@@ -51,21 +52,28 @@ class MarvelRepositoryImpl(
     }
 
     override suspend fun getRefreshComics() {
-        val comics = apiService.getComics().body()?.dataContainer?.items?.map {
+        apiService.getComics().body()?.dataContainer?.items?.map {
             comicsEntityMapper.map(it)
-        }
-        comics?.let { marvelDataBase.MarvelDao().insertComics(it.map { it }) }
-
-
+        }?.let { marvelDataBase.MarvelDao().insertComics(it.map { it }) }
     }
+
+    override fun getSeries(): Flow<State<List<Series>?>> {
+        return flow {
+            emit(State.Loading)
+            try {
+                 marvelDataBase.MarvelDao().getSeries().collect {
+                    emit(State.Success(it.map{ seriesMapper.map(it) }))
+                }
+            }catch(e: Exception){
+                emit(State.Error(e.message.toString()))
+            }
+        }    }
 
     override suspend fun getRefreshSeries() {
-
-        val series = apiService.getSeries().body()?.dataContainer?.items?.map {
+        apiService.getSeries().body()?.dataContainer?.items?.map {
             seriesEntityMapper.map(it)
-        }
-        series?.let { marvelDataBase.MarvelDao().insertSeries(it.map { it }) }
-
+        }?.let { marvelDataBase.MarvelDao().insertSeries(it.map { it }) }
     }
+
 
 }

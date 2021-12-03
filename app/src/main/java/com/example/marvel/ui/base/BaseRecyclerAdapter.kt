@@ -1,5 +1,6 @@
 package com.example.marvel.ui.base
 
+import android.annotation.SuppressLint
 import android.view.*
 import androidx.databinding.*
 import androidx.recyclerview.widget.DiffUtil
@@ -49,10 +50,10 @@ abstract class BaseRecyclerAdapter<T>(
 
     override fun getItemCount(): Int = items.size
 
+    @SuppressLint("NotifyDataSetChanged")
     fun setItems(newItems: List<T>?){
         items = newItems!!
         notifyDataSetChanged()
-
     }
 
     fun getItems() = items

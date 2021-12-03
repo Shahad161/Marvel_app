@@ -4,13 +4,10 @@ import com.example.marvel.data.local.MarvelDataBase
 import com.example.marvel.data.remote.MarvelService
 import com.example.marvel.domain.*
 import com.example.marvel.domain.mapper.*
-import com.example.marvel.ui.category.CategoriesFragment
-import com.example.marvel.ui.category.series.SeriesFragment
-import com.example.marvel.ui.category.stories.StoriesFragment
-import dagger.*
-import dagger.hilt.InstallIn
 import dagger.hilt.components.SingletonComponent
-import javax.inject.Singleton
+import dagger.hilt.InstallIn
+import dagger.*
+
 
 @Module
 @InstallIn(SingletonComponent::class)
@@ -21,9 +18,10 @@ object RepositoryModule {
                           comicsEntityMapper: ComicsEntityMapper,
                           comicsObjMapper: ComicsMapper,
                           seriesEntityMapper: SeriesEntityMapper,
+                          seriesMapper: SeriesMapper,
                           marvelDataBase: MarvelDataBase,
                           apiService: MarvelService): MarvelRepository{
-        return MarvelRepositoryImpl(apiService, marvelDataBase, characterMapper, comicsEntityMapper, comicsObjMapper, seriesEntityMapper)
+        return MarvelRepositoryImpl(apiService, marvelDataBase, characterMapper, comicsEntityMapper, comicsObjMapper, seriesEntityMapper, seriesMapper)
     }
 
     @Provides
@@ -37,5 +35,8 @@ object RepositoryModule {
 
     @Provides
     fun provideSeriesEntityMapper() = SeriesEntityMapper()
+
+    @Provides
+    fun provideSeriesMapper() = SeriesMapper()
 
 }
