@@ -49,6 +49,4 @@ class CategoriesFragment : BaseFragment<FragmentCategoriesBinding, CategoriesVie
     }
 
 
-
-
 }

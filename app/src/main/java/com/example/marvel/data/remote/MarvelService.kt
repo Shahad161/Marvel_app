@@ -13,4 +13,8 @@ interface MarvelService {
 
     @GET("comics")
     suspend fun getComics(): Response<BaseResponse<ComicsDto>>
+
+    @GET("series")
+    suspend fun getSeries(): Response<BaseResponse<SeriesDto>>
+
 }
