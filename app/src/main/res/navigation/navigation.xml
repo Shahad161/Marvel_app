@@ -21,4 +21,8 @@
         android:id="@+id/comicsFragment"
         android:name="com.example.marvel.ui.comics.ComicsFragment"
         android:label="ComicsFragment" />
+    <fragment
+        android:id="@+id/categoriesFragment"
+        android:name="com.example.marvel.ui.category.CategoriesFragment"
+        android:label="CategoriesFragment" />
 </navigation>

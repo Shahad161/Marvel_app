@@ -10,7 +10,9 @@ import androidx.lifecycle.ViewModel
 import com.example.marvel.R
 import com.example.marvel.databinding.FragmentSeriesBinding
 import com.example.marvel.ui.base.BaseFragment
+import dagger.hilt.android.AndroidEntryPoint
 
+@AndroidEntryPoint
 class SeriesFragment : BaseFragment<FragmentSeriesBinding, SeriesViewModel>() {
 
 

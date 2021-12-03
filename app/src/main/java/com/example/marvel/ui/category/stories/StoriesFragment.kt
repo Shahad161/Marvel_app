@@ -9,8 +9,9 @@ import androidx.fragment.app.viewModels
 import com.example.marvel.R
 import com.example.marvel.databinding.FragmentStoriesBinding
 import com.example.marvel.ui.base.BaseFragment
+import dagger.hilt.android.AndroidEntryPoint
 
-
+@AndroidEntryPoint
 class StoriesFragment : BaseFragment<FragmentStoriesBinding, StoriesViewModel>() {
 
     override val layoutId: Int = R.layout.fragment_stories
