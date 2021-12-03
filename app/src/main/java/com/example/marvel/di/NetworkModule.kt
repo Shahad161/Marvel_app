@@ -3,8 +3,7 @@ package com.example.marvel.di
 import com.example.marvel.BuildConfig
 import com.example.marvel.data.remote.AuthInterceptor
 import com.example.marvel.data.remote.MarvelService
-import dagger.Module
-import dagger.Provides
+import dagger.*
 import dagger.hilt.InstallIn
 import dagger.hilt.components.SingletonComponent
 import okhttp3.OkHttpClient

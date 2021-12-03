@@ -12,7 +12,6 @@ interface MarvelRepository{
     fun getCharacter(): Flow<State<List<Characters>?>>
 
     fun getComics(): Flow<State<List<Comics>?>>
-
     suspend fun getRefreshComics()
 
 

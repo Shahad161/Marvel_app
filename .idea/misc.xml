@@ -4,10 +4,13 @@
     <option name="filePathToZoomLevelMap">
       <map>
         <entry key="..\:/projects/Marvel/app/src/main/res/layout/activity_main.xml" value="0.2" />
+        <entry key="..\:/projects/Marvel/app/src/main/res/layout/fragment_categories.xml" value="0.21422101449275363" />
         <entry key="..\:/projects/Marvel/app/src/main/res/layout/fragment_comics.xml" value="0.23645833333333333" />
         <entry key="..\:/projects/Marvel/app/src/main/res/layout/fragment_details.xml" value="0.2509057971014493" />
         <entry key="..\:/projects/Marvel/app/src/main/res/layout/fragment_home.xml" value="0.1" />
         <entry key="..\:/projects/Marvel/app/src/main/res/layout/fragment_search.xml" value="0.2509057971014493" />
+        <entry key="..\:/projects/Marvel/app/src/main/res/layout/fragment_series.xml" value="0.21422101449275363" />
+        <entry key="..\:/projects/Marvel/app/src/main/res/layout/fragment_stories.xml" value="0.21422101449275363" />
         <entry key="..\:/projects/Marvel/app/src/main/res/layout/item_comics.xml" value="0.23645833333333333" />
         <entry key="..\:/projects/Marvel/app/src/main/res/menu/bottom_nav_menu.xml" value="0.25416666666666665" />
       </map>
