@@ -4,12 +4,12 @@ import androidx.room.Entity
 import androidx.room.PrimaryKey
 
 
-@Entity(tableName = "Comics_table")
-data class ComicsEntity (
+@Entity(tableName = "Stories_table")
+data class StoriesEntity(
     @PrimaryKey val id: Long,
     val name: String,
-    val imgUrl: String,
     val modified: String,
-    val pageCount: Int,
+    val imgUrl: String,
+    val type: String,
     val description: String
     )

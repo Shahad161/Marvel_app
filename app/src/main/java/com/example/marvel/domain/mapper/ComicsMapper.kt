@@ -7,7 +7,7 @@ class ComicsMapper:Mapper<ComicsEntity, Comics> {
     override fun map(input: ComicsEntity): Comics {
         return Comics(
             id = input.id.toInt(),
-            title = input.title ,
+            name = input.name ,
             imgUrl = input.imgUrl,
             pageCount = input.pageCount,
             description = input.description,

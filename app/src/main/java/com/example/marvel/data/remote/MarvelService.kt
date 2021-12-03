@@ -17,4 +17,7 @@ interface MarvelService {
     @GET("series")
     suspend fun getSeries(): Response<BaseResponse<SeriesDto>>
 
+    @GET("stories")
+    suspend fun getStories(): Response<BaseResponse<StoriesDto>>
+
 }

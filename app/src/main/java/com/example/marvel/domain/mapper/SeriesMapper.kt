@@ -10,7 +10,7 @@ class SeriesMapper: Mapper<SeriesEntity, Series> {
             endYear = input.endYear,
             rating = input.rating,
             startYear = input.startYear,
-            title = input.title,
+            name = input.name,
             type = input.type,
             imgUrl = input.imgUrl
         )

@@ -12,7 +12,7 @@ class SeriesEntityMapper:Mapper<SeriesDto, SeriesEntity> {
             modified = input.modified ?: "",
             rating = input.rating ?: "",
             startYear = input.startYear ?: 0,
-            title = input.title ?: "",
+            name = input.title ?: "",
             type = input.type ?: "",
             imgUrl = "${input.thumbnail?.path}.${input.thumbnail?.extension}",
 

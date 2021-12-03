@@ -8,7 +8,8 @@ import com.example.marvel.data.local.entity.*
 @Database(entities = [
     CharactersEntity::class,
     ComicsEntity::class,
-    SeriesEntity::class
+    SeriesEntity::class,
+    StoriesEntity::class
                      ], version = 1)
 
 abstract class MarvelDataBase: RoomDatabase() {

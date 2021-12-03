@@ -6,7 +6,7 @@ data class Series(
     val endYear: Int,
     val rating: String,
     val startYear: Int,
-    val title: String,
+    val name: String,
     val type: String,
     val imgUrl: String,
 )

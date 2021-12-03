@@ -1,15 +1,12 @@
 package com.example.marvel.domain
 
-import android.util.Log
 import com.example.marvel.data.local.MarvelDataBase
-import com.example.marvel.domain.model.Characters
+import com.example.marvel.domain.model.*
 import com.example.marvel.data.remote.*
-import com.example.marvel.data.remote.respons.SeriesDto
 import com.example.marvel.domain.mapper.*
-import com.example.marvel.domain.model.Comics
-import com.example.marvel.domain.model.Series
 import kotlinx.coroutines.flow.*
 import java.lang.Exception
+
 
 class MarvelRepositoryImpl(
     private val apiService: MarvelService,
@@ -18,7 +15,9 @@ class MarvelRepositoryImpl(
     private val comicsEntityMapper: ComicsEntityMapper,
     private val comicsObjMapper: ComicsMapper,
     private val seriesEntityMapper: SeriesEntityMapper,
-    private val seriesMapper: SeriesMapper
+    private val seriesMapper: SeriesMapper,
+    private val storiesMapper: StoriesMapper,
+    private val storiesEntityMapper: StoriesEntityMapper
 
 ): MarvelRepository {
 
@@ -67,13 +66,32 @@ class MarvelRepositoryImpl(
             }catch(e: Exception){
                 emit(State.Error(e.message.toString()))
             }
-        }    }
+        }
+    }
 
     override suspend fun getRefreshSeries() {
         apiService.getSeries().body()?.dataContainer?.items?.map {
             seriesEntityMapper.map(it)
         }?.let { marvelDataBase.MarvelDao().insertSeries(it.map { it }) }
     }
+
+    override fun getStories(): Flow<State<List<Stories>?>> {
+        return flow {
+            emit(State.Loading)
+            try {
+                marvelDataBase.MarvelDao().getStories().collect {
+                    emit(State.Success(it.map{ storiesMapper.map(it) }))
+                }
+            }catch(e: Exception){
+                emit(State.Error(e.message.toString()))
+            }
+        }
+    }
+
+    override suspend fun getRefreshStories() {
+        apiService.getStories().body()?.dataContainer?.items?.map {
+            storiesEntityMapper.map(it)
+        }?.let { marvelDataBase.MarvelDao().insertStories(it.map { it }) }    }
 
 
 }

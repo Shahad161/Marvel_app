@@ -8,7 +8,7 @@ class ComicsEntityMapper:Mapper<ComicsDto, ComicsEntity> {
     override fun map(input: ComicsDto): ComicsEntity {
         return ComicsEntity(
             id = input.id?.toLong() ?: 0L,
-            title = input.title ?: "",
+            name = input.title ?: "",
             imgUrl = "${input.thumbnail?.path}.${input.thumbnail?.extension}",
             modified = input.modified ?: "",
             pageCount = input.pageCount ?: 0,

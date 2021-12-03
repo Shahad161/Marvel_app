@@ -6,6 +6,7 @@ import com.example.marvel.data.remote.respons.SeriesDto
 import com.example.marvel.domain.model.Characters
 import com.example.marvel.domain.model.Comics
 import com.example.marvel.domain.model.Series
+import com.example.marvel.domain.model.Stories
 import kotlinx.coroutines.flow.Flow
 
 
@@ -18,6 +19,9 @@ interface MarvelRepository{
 
     fun getSeries(): Flow<State<List<Series>?>>
     suspend fun getRefreshSeries()
+
+    fun getStories(): Flow<State<List<Stories>?>>
+    suspend fun getRefreshStories()
 
 
 }
