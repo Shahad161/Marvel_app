@@ -22,10 +22,11 @@ class StoriesViewModel @Inject constructor(
     fun jildsa(){
         viewModelScope.launch{
             repository.getStories().collect {
-                Log.i("kkk", it.toString())
+                Log.i("jjj", it.toString())
             }
         }
     }
+
 
     init {
         viewModelScope.launch {
