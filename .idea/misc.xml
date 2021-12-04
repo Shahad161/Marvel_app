@@ -11,11 +11,16 @@
         <entry key="..\:/projects/Marvel/app/src/main/res/layout/fragment_search.xml" value="0.2509057971014493" />
         <entry key="..\:/projects/Marvel/app/src/main/res/layout/fragment_series.xml" value="0.21422101449275363" />
         <entry key="..\:/projects/Marvel/app/src/main/res/layout/fragment_stories.xml" value="0.21422101449275363" />
+        <entry key="..\:/projects/Marvel/app/src/main/res/layout/item_characters.xml" value="0.23645833333333333" />
+        <entry key="..\:/projects/Marvel/app/src/main/res/layout/item_characters_recycler.xml" value="0.264" />
         <entry key="..\:/projects/Marvel/app/src/main/res/layout/item_comics.xml" value="0.23645833333333333" />
+        <entry key="..\:/projects/Marvel/app/src/main/res/layout/item_comics_recycler.xml" value="0.23645833333333333" />
+        <entry key="..\:/projects/Marvel/app/src/main/res/layout/item_nested.xml" value="0.23645833333333333" />
         <entry key="..\:/projects/Marvel/app/src/main/res/layout/item_search.xml" value="0.23645833333333333" />
         <entry key="..\:/projects/Marvel/app/src/main/res/layout/item_search_recent_recycler.xml" value="0.23645833333333333" />
         <entry key="..\:/projects/Marvel/app/src/main/res/layout/item_search_recycler.xml" value="0.23645833333333333" />
         <entry key="..\:/projects/Marvel/app/src/main/res/layout/item_series.xml" value="0.22509057971014493" />
+        <entry key="..\:/projects/Marvel/app/src/main/res/layout/item_series_recycler.xml" value="0.23645833333333333" />
         <entry key="..\:/projects/Marvel/app/src/main/res/layout/item_stories.xml" value="0.23097826086956522" />
         <entry key="..\:/projects/Marvel/app/src/main/res/menu/bottom_nav_menu.xml" value="0.25416666666666665" />
       </map>

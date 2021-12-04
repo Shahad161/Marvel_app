@@ -2,13 +2,15 @@ package com.example.marvel.ui.home
 
 import android.os.Bundle
 import android.view.View
-import android.widget.Toast
 import androidx.fragment.app.viewModels
+import androidx.lifecycle.LiveData
 import com.example.marvel.R
+import com.example.marvel.data.remote.State
 import com.example.marvel.databinding.FragmentHomeBinding
 import com.example.marvel.ui.base.BaseFragment
 import dagger.hilt.android.AndroidEntryPoint
-import javax.inject.Inject
+
+
 
 @AndroidEntryPoint
 class HomeFragment : BaseFragment<FragmentHomeBinding, HomeViewModel>() {
@@ -22,8 +24,35 @@ class HomeFragment : BaseFragment<FragmentHomeBinding, HomeViewModel>() {
         setUp()
     }
 
-    private fun setUp(){
-//        viewModel.jildsa()
+    private fun setUp() {
+        viewModel.apply {
+            (binding.homeRecycler.adapter as HomeRecyclerAdapter?)?.apply {
+                addItem(characters) { state ->
+                    addItem(HomeItem.CharacterType(state.toData()!!))
+                }
+
+                addItem(comics) { state ->
+                    addItem(HomeItem.ComicsType(state.toData()!!))
+                }
+
+                addItem(series) { state ->
+                    addItem(HomeItem.SeriesType(state.toData()!!))
+                }
+            }
+        }
+    }
+
+    private fun <T>addItem(
+        response : LiveData<State<T?>>,
+        add: (State.Success<T?>) ->Unit
+    ){
+        (binding.homeRecycler.adapter as HomeRecyclerAdapter?)?.apply {
+            response.observe(this@HomeFragment) { state ->
+                if (state is State.Success) {
+                    add(state)
+                }
+            }
+        }
     }
 
 }

@@ -39,6 +39,10 @@ class MarvelRepositoryImpl(
         }
     }
 
+    override suspend fun getRefreshCharacters() {
+        apiService.getCharacters().body()?.dataContainer?.items?.map {
+            characterEntityMapper.map(it)
+        }?.let { marvelDataBase.MarvelDao().insertCharacters(it.map { it }) }    }
 
 
     override fun getComics(): Flow<State<List<Comics>>> {

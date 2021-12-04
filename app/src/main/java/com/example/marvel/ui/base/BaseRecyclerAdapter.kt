@@ -1,6 +1,5 @@
 package com.example.marvel.ui.base
 
-import android.annotation.SuppressLint
 import android.view.*
 import androidx.databinding.*
 import androidx.recyclerview.widget.DiffUtil

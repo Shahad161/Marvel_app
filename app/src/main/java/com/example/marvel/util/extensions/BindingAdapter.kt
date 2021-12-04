@@ -1,11 +1,14 @@
 package com.example.marvel.util.extensions
 
 import android.util.Log
+import android.view.View
 import android.widget.EditText
 import android.widget.ImageView
+import androidx.core.view.isVisible
 import androidx.databinding.BindingAdapter
 import androidx.recyclerview.widget.RecyclerView
 import coil.load
+import com.example.marvel.data.remote.State
 import com.example.marvel.ui.base.BaseRecyclerAdapter
 
 
@@ -29,4 +32,9 @@ fun onclickSearch(view: EditText, function: () -> Unit) {
         function()
         return@setOnEditorActionListener false
     }
+}
+
+@BindingAdapter(value = ["app:showOnSuccess"])
+fun <T> showOnSuccess(view: View, state: State<T>?) {
+    view.isVisible = (state is State.Success)
 }

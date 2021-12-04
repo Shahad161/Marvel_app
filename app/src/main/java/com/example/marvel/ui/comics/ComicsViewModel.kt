@@ -24,7 +24,6 @@ class ComicsViewModel @Inject constructor(
             repository.getComics().collect {
                 Log.i("kkk", it.toString())
             }
-
         }
     }
 
