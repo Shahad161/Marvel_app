@@ -120,4 +120,32 @@ class MarvelRepositoryImpl(
         }?.let { marvelDataBase.MarvelDao().insertSearchCharacterResult(it.map { it }) }    }
 
 
+    override fun getLastCharacter(): Flow<State<List<SearchCharacterResult>>> {
+        return flow {
+            emit(State.Loading)
+            try {
+                marvelDataBase.MarvelDao().getLastSearchCharacterResult().collect {
+                    emit(State.Success(it.map{ searchCharacterResultMapper.map(it) }))
+                }
+            }catch(e: Exception){
+                emit(State.Error(e.message.toString()))
+            }
+        }
+    }
+
+    override fun getLastCharacterByName(name: String): Flow<State<List<SearchCharacterResult>>> {
+        return flow {
+            emit(State.Loading)
+            try {
+                marvelDataBase.MarvelDao().getSearchCharacterResultByName(name).collect {
+                    emit(State.Success(it.map{ searchCharacterResultMapper.map(it) }))
+                }
+            }catch(e: Exception){
+                emit(State.Error(e.message.toString()))
+            }
+
+        }
+    }
+
+
 }

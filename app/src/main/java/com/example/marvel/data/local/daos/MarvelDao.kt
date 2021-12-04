@@ -20,6 +20,13 @@ interface MarvelDao {
     @Query("Select * From searchCharacterResult_table")
     fun getSearchCharacterResult(): Flow<List<SearchCharacterResultEntity>>
 
+    @Query("Select * From searchCharacterResult_table ORDER BY id DESC LIMIT 1")
+    fun getLastSearchCharacterResult(): Flow<List<SearchCharacterResultEntity>>
+
+    @Query("Select * From searchCharacterResult_table Where name = :name")
+    fun getSearchCharacterResultByName(name: String): Flow<List<SearchCharacterResultEntity>>
+
+
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     suspend fun insertComics(item: List<ComicsEntity>)

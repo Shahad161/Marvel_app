@@ -23,6 +23,9 @@ class SearchFragment : BaseFragment<FragmentSearchBinding, SearchViewModel>() {
     private fun setUp(){
         binding.searchRecycler.adapter =
             SearchRecyclerAdapter(mutableListOf(), this.viewModel)
+
+        binding.searchRecentRecycler.adapter =
+            SearchRecentRecyclerAdapter(mutableListOf(), this.viewModel)
     }
 
 

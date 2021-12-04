@@ -14,14 +14,18 @@ interface MarvelRepository{
     fun getComics(): Flow<State<List<Comics>?>>
     suspend fun getRefreshComics()
 
+
     fun getSeries(): Flow<State<List<Series>?>>
     suspend fun getRefreshSeries()
 
     fun getStories(): Flow<State<List<Stories>?>>
     suspend fun getRefreshStories()
 
+
     fun getCharacterByName(): Flow<State<List<SearchCharacterResult>>>
     suspend fun getRefreshCharacterByName(name: String)
 
+    fun getLastCharacter(): Flow<State<List<SearchCharacterResult>>>
 
+    fun getLastCharacterByName(name: String): Flow<State<List<SearchCharacterResult>>>
 }
