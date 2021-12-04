@@ -99,14 +99,14 @@ class MarvelRepositoryImpl(
             it }) }
     }
 
-    override fun getCharacterByName(): Flow<State<Characters>> {
+
+    override fun getCharacterByName(): Flow<State<List<Characters>>> {
         return flow {
             emit(State.Loading)
             try {
                 marvelDataBase.MarvelDao().getSearchCharacterResult().collect {
-                    it.map {  searchCharacterResultMapper.map(it)}.map {
-                        emit(State.Success(it))
-                    }
+                    emit(State.Success(it.map {searchCharacterResultMapper.map(it)}))
+                    it.map {searchCharacterResultMapper.map(it)}
                 }
             }catch(e: Exception){
                 emit(State.Error(e.message.toString()))
