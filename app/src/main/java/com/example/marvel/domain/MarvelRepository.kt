@@ -1,8 +1,6 @@
 package com.example.marvel.domain
 
-import com.example.marvel.data.local.entity.ComicsEntity
 import com.example.marvel.data.remote.State
-import com.example.marvel.data.remote.respons.SeriesDto
 import com.example.marvel.domain.model.*
 import kotlinx.coroutines.flow.Flow
 
