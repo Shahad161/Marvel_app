@@ -1,6 +1,7 @@
 package com.example.marvel.ui.home
 
 import android.os.Bundle
+import android.util.Log
 import android.view.View
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.LiveData
@@ -26,6 +27,9 @@ class HomeFragment : BaseFragment<FragmentHomeBinding, HomeViewModel>() {
                 HomeRecyclerAdapter(mutableListOf(), this@HomeFragment.viewModel)
         }
         setUp()
+        viewModel.characters.observe(this, {
+            Log.i("ddd", it.toData().toString())
+        })
     }
 
     private fun setUp() {

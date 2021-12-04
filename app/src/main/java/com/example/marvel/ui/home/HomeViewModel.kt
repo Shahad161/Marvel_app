@@ -1,14 +1,10 @@
 package com.example.marvel.ui.home
 
-import android.util.Log
-import androidx.lifecycle.MediatorLiveData
-import androidx.lifecycle.asLiveData
-import androidx.lifecycle.viewModelScope
+import androidx.lifecycle.*
 import com.example.marvel.data.remote.State
 import com.example.marvel.domain.*
 import com.example.marvel.ui.base.BaseViewModel
 import dagger.hilt.android.lifecycle.HiltViewModel
-import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 
@@ -33,10 +29,9 @@ class HomeViewModel @Inject constructor(
     }
 
     val state= MediatorLiveData<State<Any>>().apply {
-        addSource(characters,this@HomeViewModel::checkIfSuccess)
+        addSource(characters, this@HomeViewModel::checkIfSuccess)
         addSource(comics, this@HomeViewModel::checkIfSuccess)
         addSource(series, this@HomeViewModel::checkIfSuccess)
-
     }
 
 
@@ -46,7 +41,7 @@ class HomeViewModel @Inject constructor(
         }
     }
 
-    override fun onClickSliderItem() {
-    }
+
+    override fun onClickSliderItem() { }
 
 }

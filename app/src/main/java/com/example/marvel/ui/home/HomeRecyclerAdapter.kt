@@ -3,9 +3,7 @@ package com.example.marvel.ui.home
 import android.view.ViewGroup
 import androidx.recyclerview.widget.DiffUtil
 import com.example.marvel.R
-import com.example.marvel.ui.base.AppDiffUtil
-import com.example.marvel.ui.base.BaseInteractionListener
-import com.example.marvel.ui.base.BaseRecyclerAdapter
+import com.example.marvel.ui.base.*
 import com.example.marvel.util.extensions.setVariableAdapter
 
 
@@ -23,6 +21,7 @@ class HomeRecyclerAdapter(
                 item.rank
             }
         }
+
         val diffResult = DiffUtil.calculateDiff(AppDiffUtil(itemsNested,
             newItemsList,
             ::areItemsTheSame,

@@ -1,14 +1,15 @@
 package com.example.marvel.domain.mapper
 
-import com.example.marvel.data.remote.respons.CharacterDto
+import com.example.marvel.data.local.entity.CharactersEntity
 import com.example.marvel.domain.model.Characters
 
-class CharacterMapper: Mapper<CharacterDto, Characters> {
-    override fun map(input: CharacterDto): Characters {
+
+class CharacterMapper: Mapper<CharactersEntity, Characters> {
+    override fun map(input: CharactersEntity): Characters {
         return Characters(
-            id = input.id,
+            id = input.id.toInt(),
             name = input.name,
-            imgUrl = "${input.thumbnail?.path}.${input.thumbnail?.extension}"
+            imgUrl = input.imgUrl
         )
     }
 

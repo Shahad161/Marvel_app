@@ -1,7 +1,6 @@
 package com.example.marvel.domain
 
 import com.example.marvel.data.local.MarvelDataBase
-import com.example.marvel.data.local.entity.SearchCharacterResultEntity
 import com.example.marvel.domain.model.*
 import com.example.marvel.data.remote.*
 import com.example.marvel.domain.mapper.*
@@ -28,21 +27,21 @@ class MarvelRepositoryImpl(
     override fun getCharacter(): Flow<State<List<Characters>?>> {
         return flow {
             emit(State.Loading)
-            try {
-                val charactersa = apiService.getCharacters().body()?.dataContainer?.items?.map {
-                    characterMapper.map(it)
-                }
-                emit(State.Success(charactersa))
-            }catch(e: Exception){
-                emit(State.Error(e.message.toString()))
+            marvelDataBase.MarvelDao().getCharacters().collect {
+                emit(State.Success(it.map{ characterMapper.map(it) }))
             }
         }
     }
 
     override suspend fun getRefreshCharacters() {
-        apiService.getCharacters().body()?.dataContainer?.items?.map {
-            characterEntityMapper.map(it)
-        }?.let { marvelDataBase.MarvelDao().insertCharacters(it.map { it }) }    }
+        try {
+            apiService.getCharacters().body()?.dataContainer?.items?.map {
+                characterEntityMapper.map(it)
+            }?.let { marvelDataBase.MarvelDao().insertCharacters(it.map { it }) }
+        } catch(e: Exception){
+            State.Error(e.message.toString())
+        }
+      }
 
 
     override fun getComics(): Flow<State<List<Comics>>> {
@@ -59,9 +58,14 @@ class MarvelRepositoryImpl(
     }
 
     override suspend fun getRefreshComics() {
-        apiService.getComics().body()?.dataContainer?.items?.map {
-            comicsEntityMapper.map(it)
-        }?.let { marvelDataBase.MarvelDao().insertComics(it.map { it }) }
+        try {
+            apiService.getComics().body()?.dataContainer?.items?.map {
+                comicsEntityMapper.map(it)
+            }?.let { marvelDataBase.MarvelDao().insertComics(it.map { it }) }
+        }catch(e: Exception){
+            State.Error(e.message.toString())
+        }
+
     }
 
     override fun getSeries(): Flow<State<List<Series>?>> {
@@ -78,9 +82,13 @@ class MarvelRepositoryImpl(
     }
 
     override suspend fun getRefreshSeries() {
-        apiService.getSeries().body()?.dataContainer?.items?.map {
-            seriesEntityMapper.map(it)
-        }?.let { marvelDataBase.MarvelDao().insertSeries(it.map { it }) }
+        try {
+            apiService.getSeries().body()?.dataContainer?.items?.map {
+                seriesEntityMapper.map(it)
+            }?.let { marvelDataBase.MarvelDao().insertSeries(it.map { it }) }
+        }catch(e: Exception){
+            State.Error(e.message.toString())
+        }
     }
 
     override fun getStories(): Flow<State<List<Stories>?>> {
@@ -98,10 +106,14 @@ class MarvelRepositoryImpl(
     }
 
     override suspend fun getRefreshStories() {
-        apiService.getStories().body()?.dataContainer?.items?.map {
-            storiesEntityMapper.map(it)
-        }?.let { marvelDataBase.MarvelDao().insertStories(it.map {
-            it }) }
+        try {
+            apiService.getStories().body()?.dataContainer?.items?.map {
+                storiesEntityMapper.map(it)
+            }?.let { marvelDataBase.MarvelDao().insertStories(it.map {
+                it }) }
+        }catch(e: Exception){
+            State.Error(e.message.toString())
+        }
     }
 
 
@@ -119,9 +131,14 @@ class MarvelRepositoryImpl(
     }
 
     override suspend fun getRefreshCharacterByName(name: String) {
-        apiService.getCharacterByName(name).body()?.dataContainer?.items?.map {
-            searchCharacterResultEntityMapper.map(it)
-        }?.let { marvelDataBase.MarvelDao().insertSearchCharacterResult(it.map { it }) }    }
+        try {
+            apiService.getCharacterByName(name).body()?.dataContainer?.items?.map {
+                searchCharacterResultEntityMapper.map(it)
+            }?.let { marvelDataBase.MarvelDao().insertSearchCharacterResult(it.map { it }) }
+        }catch(e: Exception){
+            State.Error(e.message.toString())
+        }
+    }
 
 
     override fun getLastCharacter(): Flow<State<List<SearchCharacterResult>>> {
@@ -150,6 +167,4 @@ class MarvelRepositoryImpl(
 
         }
     }
-
-
 }
