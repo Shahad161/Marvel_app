@@ -1,6 +1,7 @@
 package com.example.marvel.domain
 
 import com.example.marvel.data.local.MarvelDataBase
+import com.example.marvel.data.local.entity.SearchCharacterResultEntity
 import com.example.marvel.domain.model.*
 import com.example.marvel.data.remote.*
 import com.example.marvel.domain.mapper.*
@@ -100,13 +101,12 @@ class MarvelRepositoryImpl(
     }
 
 
-    override fun getCharacterByName(): Flow<State<List<Characters>>> {
+    override fun getCharacterByName(): Flow<State<List<SearchCharacterResult>>> {
         return flow {
             emit(State.Loading)
             try {
                 marvelDataBase.MarvelDao().getSearchCharacterResult().collect {
-                    emit(State.Success(it.map {searchCharacterResultMapper.map(it)}))
-                    it.map {searchCharacterResultMapper.map(it)}
+                    emit(State.Success(it.map{ searchCharacterResultMapper.map(it) }))
                 }
             }catch(e: Exception){
                 emit(State.Error(e.message.toString()))

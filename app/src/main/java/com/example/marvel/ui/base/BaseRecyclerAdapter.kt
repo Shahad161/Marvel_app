@@ -6,7 +6,6 @@ import androidx.databinding.*
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
 import com.example.marvel.BR
-import dagger.hilt.android.AndroidEntryPoint
 
 
 abstract class BaseRecyclerAdapter<T>(
@@ -50,10 +49,13 @@ abstract class BaseRecyclerAdapter<T>(
 
     override fun getItemCount(): Int = items.size
 
-    @SuppressLint("NotifyDataSetChanged")
-    fun setItems(newItems: List<T>?){
-        items = newItems!!
-        notifyDataSetChanged()
+    fun setItems(newItems: List<T>) {
+        val diffResult = DiffUtil.calculateDiff(AppDiffUtil(items,
+            newItems,
+            ::areItemsTheSame,
+            ::areContentSame))
+        items = newItems
+        diffResult.dispatchUpdatesTo(this)
     }
 
     fun getItems() = items

@@ -23,14 +23,15 @@
             android:layout_width="match_parent"
             android:layout_height="64dp"
             android:layout_marginTop="16dp"
-            android:text="@{viewModel.searchName}"
+            android:lines="1"
+            android:text="@={viewModel.searchName}"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
             app:onclickSearch="@{viewModel::onclickSearch}" />
 
         <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/series_recycler"
+            android:id="@+id/search_recycler"
             android:layout_width="match_parent"
             android:layout_height="0dp"
             android:layout_marginTop="8dp"

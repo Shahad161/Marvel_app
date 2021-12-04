@@ -2,21 +2,21 @@ package com.example.marvel.ui.search
 
 import com.example.marvel.R
 import com.example.marvel.ui.base.*
-import com.example.marvel.domain.model.Characters
+import com.example.marvel.domain.model.SearchCharacterResult
 
 
 class SearchRecyclerAdapter(
-    items: List<Characters>,
+    items: List<SearchCharacterResult>,
     private val listener: SearchInteractionListener
-) : BaseRecyclerAdapter<Characters>(items, listener) {
-    override val layoutId: Int = R.layout.item_series
+) : BaseRecyclerAdapter<SearchCharacterResult>(items, listener) {
+    override val layoutId: Int = R.layout.item_search
 
     override fun <T> areItemsTheSame(
         oldItemPosition: Int,
         newItemPosition: Int,
         newItems: List<T>
     ) =
-        getItems()[oldItemPosition] == (newItems[newItemPosition] as Characters)
+        getItems()[oldItemPosition] == (newItems[newItemPosition] as SearchCharacterResult)
 }
 
 interface SearchInteractionListener: BaseInteractionListener {

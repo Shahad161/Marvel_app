@@ -14,7 +14,7 @@ interface MarvelDao {
     fun getCharacters(): Flow<List<CharactersEntity>>
 
 
-    @Insert(onConflict = OnConflictStrategy.REPLACE)
+    @Insert
     suspend fun insertSearchCharacterResult(item: List<SearchCharacterResultEntity>)
 
     @Query("Select * From searchCharacterResult_table")
