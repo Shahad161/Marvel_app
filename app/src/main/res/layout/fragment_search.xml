@@ -20,16 +20,26 @@
         android:layout_height="match_parent"
         tools:context=".ui.search.SearchFragment">
 
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/appCompatButton"
+            android:layout_width="36dp"
+            android:layout_height="36dp"
+            android:onClick="@{() -> viewModel.onClickBack()}"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="16dp"
+            android:background="@drawable/back_icon"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
         <EditText
             android:id="@+id/editText"
             android:layout_width="match_parent"
             android:layout_height="64dp"
-            android:layout_marginTop="16dp"
             android:lines="1"
             android:text="@={viewModel.searchName}"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/appCompatButton"
             app:onclickSearch="@{viewModel::onclickSearch}" />
 
         <androidx.recyclerview.widget.RecyclerView

@@ -6,6 +6,9 @@ import androidx.fragment.app.viewModels
 import com.example.marvel.R
 import com.example.marvel.databinding.FragmentSearchBinding
 import com.example.marvel.ui.base.BaseFragment
+import com.example.marvel.ui.home.HomeFragmentDirections
+import com.example.marvel.util.extensions.goToFragment
+import com.example.marvel.util.extensions.observeEvent
 import dagger.hilt.android.AndroidEntryPoint
 
 
@@ -18,6 +21,7 @@ class SearchFragment : BaseFragment<FragmentSearchBinding, SearchViewModel>() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         setUp()
+        observeEvents()
     }
 
     private fun setUp(){
@@ -26,6 +30,12 @@ class SearchFragment : BaseFragment<FragmentSearchBinding, SearchViewModel>() {
 
         binding.searchRecentRecycler.adapter =
             SearchRecentRecyclerAdapter(mutableListOf(), this.viewModel)
+    }
+
+    private fun observeEvents(){
+        viewModel.clickBack.observeEvent(this) {
+            view?.goToFragment(SearchFragmentDirections.actionSearchFragmentToHomeFragment())
+        }
     }
 
 

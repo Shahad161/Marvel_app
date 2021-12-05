@@ -7,6 +7,8 @@ import androidx.lifecycle.LiveData
 import com.example.marvel.R
 import com.example.marvel.databinding.FragmentHomeBinding
 import com.example.marvel.ui.base.BaseFragment
+import com.example.marvel.util.extensions.goToFragment
+import com.example.marvel.util.extensions.observeEvent
 import dagger.hilt.android.AndroidEntryPoint
 
 
@@ -25,7 +27,7 @@ class HomeFragment : BaseFragment<FragmentHomeBinding, HomeViewModel>() {
                 HomeRecyclerAdapter(mutableListOf(), this@HomeFragment.viewModel)
         }
         setUp()
-
+        observeEvents()
     }
 
     private fun setUp() {
@@ -43,6 +45,12 @@ class HomeFragment : BaseFragment<FragmentHomeBinding, HomeViewModel>() {
                     addItem(HomeItem.SeriesType(it))
                 }
             }
+        }
+    }
+
+    private fun observeEvents(){
+        viewModel.clickSearch.observeEvent(this) {
+            view?.goToFragment(HomeFragmentDirections.actionHomeFragmentToSearchFragment())
         }
     }
 

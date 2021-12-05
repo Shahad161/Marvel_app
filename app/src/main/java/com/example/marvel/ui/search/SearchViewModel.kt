@@ -1,5 +1,6 @@
 package com.example.marvel.ui.search
 
+import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.asLiveData
 import androidx.lifecycle.viewModelScope
@@ -7,6 +8,7 @@ import com.example.marvel.data.remote.State
 import com.example.marvel.domain.MarvelRepository
 import com.example.marvel.domain.model.SearchCharacterResult
 import com.example.marvel.ui.base.BaseViewModel
+import com.example.marvel.util.extensions.Event
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.launch
@@ -20,6 +22,9 @@ class SearchViewModel @Inject constructor(
 
     val searchRecentResult = repository.getCharacterByName().asLiveData()
     val searchResult = MutableLiveData<State<List<SearchCharacterResult>>>()
+
+    private var _clickBack = MutableLiveData<Event<Boolean>>()
+    val clickBack: LiveData<Event<Boolean>> = _clickBack
 
     val searchName = MutableLiveData<String>()
     var isExist = MutableLiveData<Boolean>()
@@ -41,7 +46,6 @@ class SearchViewModel @Inject constructor(
                 }
             }
         }
-
     }
 
     private suspend fun checkIfItemInDataBase(){
@@ -52,8 +56,11 @@ class SearchViewModel @Inject constructor(
         }
     }
 
-    override fun onClickCategory() {
-
+    fun onClickBack(){
+        _clickBack.postValue(Event(true))
     }
+
+
+    override fun onClickCategory() {}
 
 }

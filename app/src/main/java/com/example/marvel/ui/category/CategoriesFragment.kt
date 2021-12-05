@@ -8,7 +8,10 @@ import com.example.marvel.databinding.FragmentCategoriesBinding
 import com.example.marvel.ui.base.BaseFragment
 import com.example.marvel.ui.category.comics.ComicsFragment
 import com.example.marvel.ui.category.series.SeriesFragment
+import com.example.marvel.ui.search.SearchFragmentDirections
 import com.example.marvel.util.extensions.Constants
+import com.example.marvel.util.extensions.goToFragment
+import com.example.marvel.util.extensions.observeEvent
 import com.google.android.material.tabs.TabLayoutMediator
 import dagger.hilt.android.AndroidEntryPoint
 
@@ -25,6 +28,7 @@ class CategoriesFragment : BaseFragment<FragmentCategoriesBinding, CategoriesVie
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        observeEvents()
         setUp()
     }
 
@@ -46,5 +50,10 @@ class CategoriesFragment : BaseFragment<FragmentCategoriesBinding, CategoriesVie
         }
     }
 
+    private fun observeEvents(){
+        viewModel.clickBack.observeEvent(this) {
+            view?.goToFragment(CategoriesFragmentDirections.actionCategoriesFragmentToHomeFragment())
+        }
+    }
 
 }
