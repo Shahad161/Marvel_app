@@ -7,15 +7,15 @@ import kotlinx.coroutines.flow.Flow
 
 interface MarvelRepository{
 
-    fun getCharacter(): Flow<State<List<Characters>?>>
+    fun getCharacter(): Flow<List<Characters>>
     suspend fun getRefreshCharacters()
 
 
-    fun getComics(): Flow<State<List<Comics>?>>
+    fun getComics(): Flow<List<Comics>>
     suspend fun getRefreshComics()
 
 
-    fun getSeries(): Flow<State<List<Series>?>>
+    fun getSeries(): Flow<List<Series>>
     suspend fun getRefreshSeries()
 
     fun getStories(): Flow<State<List<Stories>?>>

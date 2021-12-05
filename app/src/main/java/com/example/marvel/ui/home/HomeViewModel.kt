@@ -1,10 +1,10 @@
 package com.example.marvel.ui.home
 
 import androidx.lifecycle.*
-import com.example.marvel.data.remote.State
 import com.example.marvel.domain.*
 import com.example.marvel.ui.base.BaseViewModel
 import dagger.hilt.android.lifecycle.HiltViewModel
+import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 
@@ -13,9 +13,9 @@ import javax.inject.Inject
 @HiltViewModel
 class HomeViewModel @Inject constructor(
     var repository: MarvelRepository
-): BaseViewModel(),HomeInteractionListener {
+): BaseViewModel(), HomeInteractionListener {
 
-    var characters = repository.getCharacter().asLiveData()
+    var characters = repository.getCharacter().asLiveData(Dispatchers.IO)
     var comics = repository.getComics().asLiveData()
     var series = repository.getSeries().asLiveData()
 
@@ -28,17 +28,15 @@ class HomeViewModel @Inject constructor(
         }
     }
 
-    val state= MediatorLiveData<State<Any>>().apply {
+    val data= MediatorLiveData<Any>().apply {
         addSource(characters, this@HomeViewModel::checkIfSuccess)
         addSource(comics, this@HomeViewModel::checkIfSuccess)
         addSource(series, this@HomeViewModel::checkIfSuccess)
     }
 
 
-    private fun <T>checkIfSuccess(currentState:State<T>){
-        if(currentState is State.Success){
-            state.postValue(currentState as State<Any>)
-        }
+    private fun <T> checkIfSuccess(currentState: T){
+        data.postValue(currentState)
     }
 
 

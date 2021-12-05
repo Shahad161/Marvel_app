@@ -6,7 +6,6 @@ import androidx.lifecycle.viewModelScope
 import com.example.marvel.domain.MarvelRepository
 import com.example.marvel.ui.base.BaseViewModel
 import dagger.hilt.android.lifecycle.HiltViewModel
-import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.launch
 import javax.inject.Inject
@@ -17,12 +16,12 @@ class SeriesViewModel @Inject constructor(
     private val repository: MarvelRepository
 ): BaseViewModel(), SeriesInteractionListener {
 
-    val series = repository.getSeries().asLiveData(Dispatchers.IO)
+    val series = repository.getSeries().asLiveData()
 
     fun jildsa(){
         viewModelScope.launch{
             repository.getSeries().collect {
-                Log.i("kkk", it.toString())
+                Log.i("aaa", it.toString())
             }
         }
     }

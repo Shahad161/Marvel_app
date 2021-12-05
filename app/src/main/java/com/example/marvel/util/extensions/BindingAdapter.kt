@@ -3,11 +3,11 @@ package com.example.marvel.util.extensions
 import android.util.Log
 import android.view.View
 import android.widget.*
+import androidx.annotation.NonNull
 import androidx.core.view.isVisible
 import androidx.databinding.BindingAdapter
 import androidx.recyclerview.widget.RecyclerView
 import coil.load
-import com.example.marvel.data.remote.State
 import com.example.marvel.ui.base.BaseRecyclerAdapter
 
 
@@ -33,7 +33,7 @@ fun onclickSearch(view: EditText, function: () -> Unit) {
     }
 }
 
-@BindingAdapter(value = ["app:showOnSuccess"])
-fun <T> showOnSuccess(view: View, state: State<T>?) {
-    view.isVisible = (state is State.Success)
+@BindingAdapter(value = ["app:isNotNull"])
+fun <T> isNotNull(view: View, list: T?) {
+    view.isVisible = (list != null)
 }

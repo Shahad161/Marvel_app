@@ -14,6 +14,14 @@ class HomeRecyclerAdapter(
 
     override var layoutId: Int = 0
 
+    override fun areContentSame(
+        oldPosition: Int,
+        newPosition: Int,
+        newList: List<HomeItem>,
+    ) =
+        getItems()[oldPosition].rank == newList[newPosition].rank
+
+
     fun addItem(newItems: HomeItem) {
         val newItemsList = itemsNested.apply {
             add(newItems)

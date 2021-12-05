@@ -1,5 +1,6 @@
 package com.example.marvel.domain
 
+import android.util.Log
 import com.example.marvel.data.local.MarvelDataBase
 import com.example.marvel.domain.model.*
 import com.example.marvel.data.remote.*
@@ -24,11 +25,10 @@ class MarvelRepositoryImpl(
 
 ): MarvelRepository {
 
-    override fun getCharacter(): Flow<State<List<Characters>?>> {
+    override fun getCharacter(): Flow<List<Characters>> {
         return flow {
-            emit(State.Loading)
             marvelDataBase.MarvelDao().getCharacters().collect {
-                emit(State.Success(it.map{ characterMapper.map(it) }))
+                emit(it.map{ characterMapper.map(it) })
             }
         }
     }
@@ -44,15 +44,10 @@ class MarvelRepositoryImpl(
       }
 
 
-    override fun getComics(): Flow<State<List<Comics>>> {
+    override fun getComics(): Flow<List<Comics>> {
         return flow {
-            emit(State.Loading)
-            try {
-                marvelDataBase.MarvelDao().getComics().collect {
-                    emit(State.Success(it.map { comicsObjMapper.map(it) }))
-                }
-            }catch(e: Exception){
-                emit(State.Error(e.message.toString()))
+            marvelDataBase.MarvelDao().getComics().collect {
+                emit(it.map { comicsObjMapper.map(it) })
             }
         }
     }
@@ -68,15 +63,10 @@ class MarvelRepositoryImpl(
 
     }
 
-    override fun getSeries(): Flow<State<List<Series>?>> {
+    override fun getSeries(): Flow<List<Series>> {
         return flow {
-            emit(State.Loading)
-            try {
-                 marvelDataBase.MarvelDao().getSeries().collect {
-                    emit(State.Success(it.map{ seriesMapper.map(it) }))
-                }
-            }catch(e: Exception){
-                emit(State.Error(e.message.toString()))
+            marvelDataBase.MarvelDao().getSeries().collect {
+            emit(it.map { seriesMapper.map(it) })
             }
         }
     }

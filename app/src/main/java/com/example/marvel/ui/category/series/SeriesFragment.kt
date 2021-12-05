@@ -20,7 +20,7 @@ class SeriesFragment : BaseFragment<FragmentSeriesBinding, SeriesViewModel>() {
         super.onViewCreated(view, savedInstanceState)
         setUp()
         viewModel.series.observe(this, {
-            Log.i("ddd", it.toData().toString())
+            Log.i("ddd", it.toString())
         })
     }
 

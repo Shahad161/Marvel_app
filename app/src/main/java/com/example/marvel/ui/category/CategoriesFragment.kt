@@ -6,15 +6,13 @@ import androidx.fragment.app.viewModels
 import com.example.marvel.R
 import com.example.marvel.databinding.FragmentCategoriesBinding
 import com.example.marvel.ui.base.BaseFragment
-import com.example.marvel.ui.base.BaseViewModel
 import com.example.marvel.ui.category.series.SeriesFragment
 import com.example.marvel.ui.category.stories.StoriesFragment
 import com.example.marvel.util.extensions.Constants
 import com.google.android.material.tabs.TabLayoutMediator
 import dagger.hilt.android.AndroidEntryPoint
-import dagger.hilt.android.HiltAndroidApp
-import dagger.hilt.android.lifecycle.HiltViewModel
-import javax.inject.Inject
+
+
 
 @AndroidEntryPoint
 class CategoriesFragment : BaseFragment<FragmentCategoriesBinding, CategoriesViewModel>() {
