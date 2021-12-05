@@ -10,7 +10,7 @@ class ComicsRecycler(
     val listener: HomeInteractionListener,
 ) : BaseRecyclerAdapter<Comics>(items, listener) {
 
-    override val layoutId: Int = R.layout.item_comics
+    override val layoutId: Int = R.layout.item_comics_nested
 
     override fun <T> areItemsTheSame(
         oldItemPosition: Int,

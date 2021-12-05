@@ -10,7 +10,7 @@ class SeriesRecycler(
     val listener: HomeInteractionListener,
 ) : BaseRecyclerAdapter<Series>(items, listener) {
 
-    override val layoutId: Int = R.layout.item_series
+    override val layoutId: Int = R.layout.item_series_nested
 
     override fun <T> areItemsTheSame(
         oldItemPosition: Int,

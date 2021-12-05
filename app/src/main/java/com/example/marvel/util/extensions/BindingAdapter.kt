@@ -3,7 +3,6 @@ package com.example.marvel.util.extensions
 import android.util.Log
 import android.view.View
 import android.widget.*
-import androidx.annotation.NonNull
 import androidx.core.view.isVisible
 import androidx.databinding.BindingAdapter
 import androidx.recyclerview.widget.RecyclerView

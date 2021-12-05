@@ -4,6 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools">
 
     <data>
+
         <variable
             name="viewModel"
             type="com.example.marvel.ui.search.SearchViewModel" />
@@ -11,6 +12,7 @@
         <variable
             name="listener"
             type="com.example.marvel.ui.search.SearchInteractionListener" />
+
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
