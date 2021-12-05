@@ -42,11 +42,4 @@ interface MarvelDao {
     fun getSeries(): Flow<List<SeriesEntity>>
 
 
-    @Insert(onConflict = OnConflictStrategy.REPLACE)
-    suspend fun insertStories(item: List<StoriesEntity>)
-
-    @Query("Select * From Stories_table")
-    fun getStories(): Flow<List<StoriesEntity>>
-
-
 }

@@ -1,6 +1,5 @@
 package com.example.marvel.domain
 
-import android.util.Log
 import com.example.marvel.data.local.MarvelDataBase
 import com.example.marvel.domain.model.*
 import com.example.marvel.data.remote.*
@@ -18,8 +17,6 @@ class MarvelRepositoryImpl(
     private val comicsObjMapper: ComicsMapper,
     private val seriesEntityMapper: SeriesEntityMapper,
     private val seriesMapper: SeriesMapper,
-    private val storiesMapper: StoriesMapper,
-    private val storiesEntityMapper: StoriesEntityMapper,
     private val searchCharacterResultMapper: SearchCharacterResultMapper,
     private val searchCharacterResultEntityMapper: SearchCharacterResultEntityMapper
 
@@ -76,31 +73,6 @@ class MarvelRepositoryImpl(
             apiService.getSeries().body()?.dataContainer?.items?.map {
                 seriesEntityMapper.map(it)
             }?.let { marvelDataBase.MarvelDao().insertSeries(it.map { it }) }
-        }catch(e: Exception){
-            State.Error(e.message.toString())
-        }
-    }
-
-    override fun getStories(): Flow<State<List<Stories>?>> {
-        return flow {
-            emit(State.Loading)
-            try {
-                marvelDataBase.MarvelDao().getStories().collect {
-                    emit(State.Success(it.map{ storiesMapper.map(it) }))
-                }
-
-            }catch(e: Exception){
-                emit(State.Error(e.message.toString()))
-            }
-        }
-    }
-
-    override suspend fun getRefreshStories() {
-        try {
-            apiService.getStories().body()?.dataContainer?.items?.map {
-                storiesEntityMapper.map(it)
-            }?.let { marvelDataBase.MarvelDao().insertStories(it.map {
-                it }) }
         }catch(e: Exception){
             State.Error(e.message.toString())
         }
