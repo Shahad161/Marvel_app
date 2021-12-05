@@ -1,4 +1,4 @@
-package com.example.marvel.ui.comics
+package com.example.marvel.ui.category.comics
 
 import com.example.marvel.R
 import com.example.marvel.domain.model.Comics

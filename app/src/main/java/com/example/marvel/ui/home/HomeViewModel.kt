@@ -9,7 +9,6 @@ import kotlinx.coroutines.launch
 import javax.inject.Inject
 
 
-
 @HiltViewModel
 class HomeViewModel @Inject constructor(
     var repository: MarvelRepository
@@ -28,7 +27,7 @@ class HomeViewModel @Inject constructor(
         }
     }
 
-    val data= MediatorLiveData<Any>().apply {
+    val data = MediatorLiveData<Any>().apply {
         addSource(characters, this@HomeViewModel::checkIfNull)
         addSource(comics, this@HomeViewModel::checkIfNull)
         addSource(series, this@HomeViewModel::checkIfNull)
@@ -37,7 +36,7 @@ class HomeViewModel @Inject constructor(
 
     private fun <T> checkIfNull(currentData: T){
         if (currentData != null)
-        data.postValue(currentData)
+            data.postValue(currentData)
     }
 
 

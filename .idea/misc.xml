@@ -3,6 +3,7 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="..\:/projects/Marvel/app/src/main/res/drawable-v24/ic_launcher_foreground.xml" value="0.1398148148148148" />
         <entry key="..\:/projects/Marvel/app/src/main/res/drawable/ic_baseline_menu_24.xml" value="0.24871794871794872" />
         <entry key="..\:/projects/Marvel/app/src/main/res/drawable/ic_search.xml" value="0.24871794871794872" />
         <entry key="..\:/projects/Marvel/app/src/main/res/drawable/menu_icon.xml" value="0.24871794871794872" />
@@ -14,7 +15,7 @@
         <entry key="..\:/projects/Marvel/app/src/main/res/layout/fragment_home.xml" value="0.264" />
         <entry key="..\:/projects/Marvel/app/src/main/res/layout/fragment_search.xml" value="0.2509057971014493" />
         <entry key="..\:/projects/Marvel/app/src/main/res/layout/fragment_series.xml" value="0.21422101449275363" />
-        <entry key="..\:/projects/Marvel/app/src/main/res/layout/fragment_stories.xml" value="0.21422101449275363" />
+        <entry key="..\:/projects/Marvel/app/src/main/res/layout/fragment_stories.xml" value="0.1" />
         <entry key="..\:/projects/Marvel/app/src/main/res/layout/item_character_nested.xml" value="0.23645833333333333" />
         <entry key="..\:/projects/Marvel/app/src/main/res/layout/item_characters.xml" value="0.23645833333333333" />
         <entry key="..\:/projects/Marvel/app/src/main/res/layout/item_characters_recycler.xml" value="0.264" />

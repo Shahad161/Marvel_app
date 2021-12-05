@@ -20,7 +20,7 @@ abstract class BaseRecyclerAdapter<T>(
         newItems: List<T>,
     ): Boolean
 
-    open fun areContentSame(oldPosition: Int, newPosition: Int, newList: List<T>) = true
+    open fun areContentSame(oldPosition: Int, newPosition: Int, newList: List<T>) = false
 
     override fun onCreateViewHolder(
         parent: ViewGroup,

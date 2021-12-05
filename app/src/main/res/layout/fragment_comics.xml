@@ -6,18 +6,18 @@
     <data>
         <variable
             name="viewModel"
-            type="com.example.marvel.ui.comics.ComicsViewModel" />
+            type="com.example.marvel.ui.category.comics.ComicsViewModel" />
 
         <variable
             name="listener"
-            type="com.example.marvel.ui.comics.ComicsViewModel" />
+            type="com.example.marvel.ui.category.comics.ComicsViewModel" />
 
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        tools:context=".ui.comics.ComicsFragment">
+        tools:context=".ui.category.comics.ComicsFragment">
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/comics_recycler"

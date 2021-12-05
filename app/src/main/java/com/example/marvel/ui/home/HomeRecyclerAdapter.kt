@@ -26,6 +26,9 @@ class HomeRecyclerAdapter(
                 item.rank
             }
         }
+
+
+        Log.i("kkk", newItemsList.toString())
         val diffResult = DiffUtil.calculateDiff(AppDiffUtil(itemsNested,
             newItemsList,
             ::areItemsTheSame,

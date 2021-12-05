@@ -19,7 +19,7 @@
         android:label="SearchFragment" />
     <fragment
         android:id="@+id/comicsFragment"
-        android:name="com.example.marvel.ui.comics.ComicsFragment"
+        android:name="com.example.marvel.ui.category.comics.ComicsFragment"
         android:label="ComicsFragment" />
     <fragment
         android:id="@+id/categoriesFragment"

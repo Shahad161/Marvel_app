@@ -6,8 +6,8 @@ import androidx.fragment.app.viewModels
 import com.example.marvel.R
 import com.example.marvel.databinding.FragmentCategoriesBinding
 import com.example.marvel.ui.base.BaseFragment
+import com.example.marvel.ui.category.comics.ComicsFragment
 import com.example.marvel.ui.category.series.SeriesFragment
-import com.example.marvel.ui.category.stories.StoriesFragment
 import com.example.marvel.util.extensions.Constants
 import com.google.android.material.tabs.TabLayoutMediator
 import dagger.hilt.android.AndroidEntryPoint
@@ -20,8 +20,8 @@ class CategoriesFragment : BaseFragment<FragmentCategoriesBinding, CategoriesVie
     override val layoutId: Int = R.layout.fragment_categories
     override val viewModel: CategoriesViewModel by viewModels()
     override val viewModelClass = CategoriesViewModel::class.java
+    private val fragmentsList = listOf(ComicsFragment(), SeriesFragment())
 
-    private val fragmentsList = listOf(StoriesFragment(), SeriesFragment())
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)

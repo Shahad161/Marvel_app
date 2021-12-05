@@ -10,11 +10,6 @@
         android:title="@string/search"/>
 
     <item
-        android:id="@+id/comicsFragment"
-        android:icon="@drawable/ic_baseline_search_24"
-        android:title="@string/search"/>
-
-    <item
         android:id="@+id/categoriesFragment"
         android:icon="@drawable/ic_baseline_category_24"
         android:title="@string/categories"/>

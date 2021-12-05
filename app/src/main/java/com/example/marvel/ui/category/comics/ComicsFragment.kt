@@ -1,4 +1,4 @@
-package com.example.marvel.ui.comics
+package com.example.marvel.ui.category.comics
 
 import android.os.Bundle
 import android.view.View
@@ -22,7 +22,6 @@ class ComicsFragment: BaseFragment<FragmentComicsBinding, ComicsViewModel>() {
     }
 
     private fun setUp(){
-        viewModel.jildsa()
         binding.comicsRecycler.adapter =
             ComicsRecyclerAdapter(mutableListOf(), this.viewModel)
     }

@@ -1,13 +1,11 @@
-package com.example.marvel.ui.comics
+package com.example.marvel.ui.category.comics
 
-import android.util.Log
 import androidx.lifecycle.asLiveData
 import androidx.lifecycle.viewModelScope
 import com.example.marvel.domain.MarvelRepository
 import com.example.marvel.ui.base.BaseViewModel
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 
@@ -18,13 +16,6 @@ class ComicsViewModel @Inject constructor(
 
     val comics =  repository.getComics().asLiveData(Dispatchers.IO)
 
-    fun jildsa(){
-        viewModelScope.launch{
-            repository.getComics().collect {
-                Log.i("kkk", it.toString())
-            }
-        }
-    }
 
     init {
         viewModelScope.launch {
