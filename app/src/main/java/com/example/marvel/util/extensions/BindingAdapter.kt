@@ -14,7 +14,6 @@ import com.example.marvel.ui.base.BaseRecyclerAdapter
 @BindingAdapter(value = ["app:items"])
 fun <T> setRecyclerItems(view: RecyclerView, items: List<T>?) {
     items?.let { listItems ->
-        Log.i("kk" , items.toString())
         (view.adapter as BaseRecyclerAdapter<T>?)
             ?.setItems(listItems)
     }

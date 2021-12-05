@@ -1,6 +1,9 @@
 package com.example.marvel.ui.home
 
+import android.text.TextUtils.replace
+import android.util.Log
 import android.view.ViewGroup
+import androidx.lifecycle.MutableLiveData
 import androidx.recyclerview.widget.DiffUtil
 import com.example.marvel.R
 import com.example.marvel.ui.base.*
@@ -19,17 +22,23 @@ class HomeRecyclerAdapter(
         newPosition: Int,
         newList: List<HomeItem>,
     ) =
-        getItems()[oldPosition].rank == newList[newPosition].rank
+        getItems()[oldPosition] == newList[newPosition]
 
 
     fun addItem(newItems: HomeItem) {
         val newItemsList = itemsNested.apply {
+//            if (this.size < 3)
+//                add(newItems)
+//            else{
+//                this.removeAt(newItems.rank)
+//                add(newItems)
+//            }
             add(newItems)
             sortBy { item ->
                 item.rank
             }
         }
-
+        Log.i("ggg", newItemsList.toString())
         val diffResult = DiffUtil.calculateDiff(AppDiffUtil(itemsNested,
             newItemsList,
             ::areItemsTheSame,
@@ -43,6 +52,7 @@ class HomeRecyclerAdapter(
         newItems: List<T>
     ) =
         getItems()[oldItemPosition].rank == (newItems[newItemPosition] as HomeItem).rank
+
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): BaseViewHolder {
         layoutId = getLayout(viewType)

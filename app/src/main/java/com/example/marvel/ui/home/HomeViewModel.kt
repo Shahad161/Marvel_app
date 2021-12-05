@@ -29,14 +29,15 @@ class HomeViewModel @Inject constructor(
     }
 
     val data= MediatorLiveData<Any>().apply {
-        addSource(characters, this@HomeViewModel::checkIfSuccess)
-        addSource(comics, this@HomeViewModel::checkIfSuccess)
-        addSource(series, this@HomeViewModel::checkIfSuccess)
+        addSource(characters, this@HomeViewModel::checkIfNull)
+        addSource(comics, this@HomeViewModel::checkIfNull)
+        addSource(series, this@HomeViewModel::checkIfNull)
     }
 
 
-    private fun <T> checkIfSuccess(currentState: T){
-        data.postValue(currentState)
+    private fun <T> checkIfNull(currentData: T){
+        if (currentData != null)
+        data.postValue(currentData)
     }
 
 
