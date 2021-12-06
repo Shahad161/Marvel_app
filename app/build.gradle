@@ -14,7 +14,7 @@ android {
 
     defaultConfig {
         applicationId "com.example.marvel"
-        minSdk 25
+        minSdk 26
         targetSdk 31
         versionCode 1
         versionName "1.0"
@@ -96,4 +96,9 @@ dependencies {
 
     //lottie dependence
     implementation 'com.airbnb.android:lottie:4.1.0'
+
+    //image slideshow library
+    implementation 'com.github.denzcoskun:ImageSlideshow:0.1.0'
+
+
 }

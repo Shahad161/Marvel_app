@@ -3,6 +3,7 @@ package com.example.marvel.ui.home
 import android.util.Log
 import android.view.ViewGroup
 import androidx.recyclerview.widget.DiffUtil
+import com.example.marvel.BR
 import com.example.marvel.R
 import com.example.marvel.ui.base.*
 import com.example.marvel.util.extensions.setVariableAdapter
@@ -18,7 +19,7 @@ class HomeRecyclerAdapter(
 
     fun addItem(newItems: HomeItem) {
         val newItemsList = itemsNested.apply {
-            if (this.size > 2){
+            if (this.size > 3){
                 this.removeAt(newItems.rank)
             }
             add(newItems)
@@ -51,6 +52,7 @@ class HomeRecyclerAdapter(
 
     private fun getLayout(viewType: Int): Int =
         when (viewType) {
+            TYPE_SLIDER -> R.layout.item_slider_nested
             TYPE_CHARACTER -> R.layout.item_characters_recycler
             TYPE_COMICS -> R.layout.item_comics_recycler
             else -> R.layout.item_series_recycler
@@ -62,6 +64,9 @@ class HomeRecyclerAdapter(
 
     private fun bind(holder: ItemViewHolder, position: Int) {
         when (val currentItem = itemsNested[position]) {
+            is HomeItem.SliderType -> {
+                holder.binding.setVariable(BR.item, currentItem.items)
+            }
             is HomeItem.CharacterType -> {
                 holder.setVariableAdapter(CharactersRecycler(currentItem.items, listener))
             }
@@ -77,6 +82,7 @@ class HomeRecyclerAdapter(
 
     override fun getItemViewType(position: Int): Int =
         when (itemsNested[position]) {
+            is HomeItem.SliderType -> TYPE_SLIDER
             is HomeItem.CharacterType -> TYPE_CHARACTER
             is HomeItem.ComicsType -> TYPE_COMICS
             is HomeItem.SeriesType -> TYPE_SERIES
@@ -84,9 +90,10 @@ class HomeRecyclerAdapter(
         }
 
     companion object {
-        const val TYPE_CHARACTER = 1
-        const val TYPE_COMICS = 2
-        const val TYPE_SERIES = 3
+        const val TYPE_SLIDER = 1
+        const val TYPE_CHARACTER = 2
+        const val TYPE_COMICS = 3
+        const val TYPE_SERIES = 4
     }
 
 }

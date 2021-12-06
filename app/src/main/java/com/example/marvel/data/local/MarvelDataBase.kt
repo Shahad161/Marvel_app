@@ -13,7 +13,5 @@ import com.example.marvel.data.local.entity.*
                      ], version = 1)
 
 abstract class MarvelDataBase: RoomDatabase() {
-
     abstract fun MarvelDao(): MarvelDao
-
 }

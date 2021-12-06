@@ -1,13 +1,16 @@
 package com.example.marvel.util.extensions
 
-import android.util.Log
-import android.view.View
+import coil.load
 import android.widget.*
+import android.view.View
 import androidx.core.view.isVisible
 import androidx.databinding.BindingAdapter
 import androidx.recyclerview.widget.RecyclerView
-import coil.load
+import com.denzcoskun.imageslider.ImageSlider
+import com.denzcoskun.imageslider.models.SlideModel
+import com.example.marvel.domain.model.Characters
 import com.example.marvel.ui.base.BaseRecyclerAdapter
+import com.denzcoskun.imageslider.constants.ScaleTypes
 
 
 @BindingAdapter(value = ["app:items"])
@@ -42,3 +45,11 @@ fun <T> visibility(view: View, value: Boolean?) {
     view.isVisible = value == true
 }
 
+@BindingAdapter(value = ["app:setSliderImagesList"])
+fun setSliderImages(slider: ImageSlider, images: List<Characters>?){
+    images?.map { image ->
+        SlideModel(image.imgUrl)
+    }?.let { list ->
+        slider.setImageList(list, ScaleTypes.FIT)
+    }
+}

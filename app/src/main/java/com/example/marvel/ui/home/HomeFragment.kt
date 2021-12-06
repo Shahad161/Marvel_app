@@ -36,7 +36,9 @@ class HomeFragment : BaseFragment<FragmentHomeBinding, HomeViewModel>() {
                 addItem(characters) {
                     addItem(HomeItem.CharacterType(it))
                 }
-
+                addItem(characters) {
+                    addItem(HomeItem.SliderType(it))
+                }
                 addItem(comics) {
                     addItem(HomeItem.ComicsType(it))
                 }

@@ -6,7 +6,6 @@
         <variable
             name="adapter"
             type="com.example.marvel.ui.home.SeriesRecycler" />
-
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout

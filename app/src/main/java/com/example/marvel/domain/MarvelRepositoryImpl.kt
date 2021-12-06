@@ -7,6 +7,9 @@ import com.example.marvel.data.remote.*
 import com.example.marvel.domain.mapper.*
 import kotlinx.coroutines.flow.*
 import java.lang.Exception
+import java.text.SimpleDateFormat
+import java.time.LocalDate
+import java.util.*
 
 
 class MarvelRepositoryImpl(
@@ -19,9 +22,9 @@ class MarvelRepositoryImpl(
     private val seriesEntityMapper: SeriesEntityMapper,
     private val seriesMapper: SeriesMapper,
     private val searchCharacterResultMapper: SearchCharacterResultMapper,
-    private val searchCharacterResultEntityMapper: SearchCharacterResultEntityMapper
+    private val searchCharacterResultEntityMapper: SearchCharacterResultEntityMapper,
 
-): MarvelRepository {
+    ): MarvelRepository {
 
     override fun getCharacter(): Flow<List<Characters>> {
         return flow {
@@ -90,6 +93,7 @@ class MarvelRepositoryImpl(
     override suspend fun getRefreshCharacterSearch(name: String) {
         try {
             apiService.getCharacterByName(name).body()?.dataContainer?.items?.map {
+
                 searchCharacterResultEntityMapper.map(it)
             }?.let { marvelDataBase.MarvelDao().insertSearchCharacterResult(it.map { it }) }
         }catch(e: Exception){
