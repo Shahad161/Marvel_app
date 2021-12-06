@@ -37,13 +37,8 @@ fun <T> isNotNull(view: View, list: T?) {
 }
 
 
-@BindingAdapter(value = ["app:notFound"])
-fun <T> notFound(view: View, value: Boolean?) {
-    view.isVisible = value == true
-}
-
 @BindingAdapter(value = ["app:visibility"])
 fun <T> visibility(view: View, value: Boolean?) {
-    view.isVisible = value == false
+    view.isVisible = value == true
 }
 

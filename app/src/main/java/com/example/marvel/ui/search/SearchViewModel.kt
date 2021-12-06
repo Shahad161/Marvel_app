@@ -1,6 +1,5 @@
 package com.example.marvel.ui.search
 
-import android.util.Log
 import androidx.lifecycle.*
 import com.example.marvel.domain.MarvelRepository
 import com.example.marvel.domain.model.SearchCharacterResult
@@ -25,6 +24,10 @@ class SearchViewModel @Inject constructor(
 
     private var _notFound = MutableLiveData(false)
     val notFound: LiveData<Boolean> = _notFound
+
+    private var _recentSearch= MutableLiveData(true)
+    val recentSearch: LiveData<Boolean> = _recentSearch
+
 
     val searchName = MutableLiveData<String>()
     private var isExist = MutableLiveData<Boolean>()
@@ -51,8 +54,12 @@ class SearchViewModel @Inject constructor(
     }
 
     private fun  checkIfItemExist(list: List<SearchCharacterResult>) {
+        _recentSearch.postValue(false)
         if (list.isNullOrEmpty())
             _notFound.postValue(true)
+        else
+            _notFound.postValue(false)
+
     }
 
     private fun checkIfItemInDataBase(){
@@ -67,6 +74,8 @@ class SearchViewModel @Inject constructor(
             }
         }
     }
+
+
 
     fun onClickBack(){
         _clickBack.postValue(Event(true))
