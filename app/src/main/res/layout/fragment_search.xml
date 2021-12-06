@@ -20,6 +20,19 @@
         android:layout_height="match_parent"
         tools:context=".ui.search.SearchFragment">
 
+        <com.airbnb.lottie.LottieAnimationView
+            android:id="@+id/loading"
+            android:layout_width="300dp"
+            android:layout_height="300dp"
+            app:notFound="@{viewModel.notFound}"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:lottie_autoPlay="true"
+            app:lottie_loop="true"
+            app:lottie_rawRes="@raw/not_found" />
+
         <androidx.appcompat.widget.AppCompatButton
             android:id="@+id/appCompatButton"
             android:layout_width="36dp"
@@ -34,23 +47,26 @@
         <EditText
             android:id="@+id/editText"
             android:layout_width="match_parent"
-            android:layout_height="64dp"
-            android:lines="1"
+            android:layout_height="wrap_content"
+            android:maxLines="1"
             android:text="@={viewModel.searchName}"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/appCompatButton"
-            app:onclickSearch="@{viewModel::onclickSearch}" />
+            app:onclickSearch="@{viewModel::onclickSearch}"
+            android:inputType="text"
+            android:autofillHints="search..." />
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/search_recycler"
             android:layout_width="match_parent"
             android:layout_height="0dp"
             android:layout_marginTop="8dp"
-            app:items="@{viewModel.searchResult.toData()}"
-            app:layoutManager="androidx.recyclerview.widget.GridLayoutManager"
-            app:layout_constraintBottom_toBottomOf="parent"
+            app:items="@{viewModel.searchResult}"
+            android:orientation="vertical"
+            app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
             app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/editText"
             app:spanCount="2"
@@ -60,13 +76,13 @@
             android:id="@+id/search_recent_recycler"
             android:layout_width="match_parent"
             android:layout_height="0dp"
-            android:layout_marginTop="8dp"
-            app:items="@{viewModel.searchRecentResult.toData()}"
+            android:visibility="visible"
+            app:visibility="@{viewModel.notFound}"
+            app:items="@{viewModel.searchRecentResult}"
             app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
-            app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/editText"
+            app:layout_constraintTop_toBottomOf="@+id/search_recycler"
             app:spanCount="2"
             tools:listitem="@layout/item_search_recent" />
 

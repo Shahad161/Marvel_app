@@ -7,7 +7,7 @@ class SearchCharacterResultEntityMapper:Mapper<CharacterDto, SearchCharacterResu
     override fun map(input: CharacterDto): SearchCharacterResultEntity {
         return SearchCharacterResultEntity(
             id = input.id?.toLong() ?: 0L,
-            name = input.name ?: "",
+            name = input.name?.lowercase() ?: "",
             description = input.description ?: "",
             modified = input.modified ?: "",
             imgUrl = "${input.thumbnail?.path}.${input.thumbnail?.extension}"

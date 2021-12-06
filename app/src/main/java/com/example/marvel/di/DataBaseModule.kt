@@ -26,4 +26,5 @@ object DataBaseModule {
     @Provides
     fun provideDao(dataBase: MarvelDataBase) = dataBase.MarvelDao()
 
+
 }

@@ -1,5 +1,6 @@
 package com.example.marvel.domain
 
+import android.util.Log
 import com.example.marvel.data.local.MarvelDataBase
 import com.example.marvel.domain.model.*
 import com.example.marvel.data.remote.*
@@ -79,20 +80,14 @@ class MarvelRepositoryImpl(
     }
 
 
-    override fun getCharacterByName(): Flow<State<List<SearchCharacterResult>>> {
+    override fun getCharacterRecentSearch(): Flow<List<SearchCharacterResult>> {
         return flow {
-            emit(State.Loading)
-            try {
-                marvelDataBase.MarvelDao().getSearchCharacterResult().collect {
-                    emit(State.Success(it.map{ searchCharacterResultMapper.map(it) }))
-                }
-            }catch(e: Exception){
-                emit(State.Error(e.message.toString()))
-            }
+            marvelDataBase.MarvelDao().getSearchCharacterResult().collect {
+                emit(it.map{ searchCharacterResultMapper.map(it) }) }
         }
     }
 
-    override suspend fun getRefreshCharacterByName(name: String) {
+    override suspend fun getRefreshCharacterSearch(name: String) {
         try {
             apiService.getCharacterByName(name).body()?.dataContainer?.items?.map {
                 searchCharacterResultEntityMapper.map(it)
@@ -102,31 +97,12 @@ class MarvelRepositoryImpl(
         }
     }
 
-
-    override fun getLastCharacter(): Flow<State<List<SearchCharacterResult>>> {
+    override fun getCharacterSearchByName(name: String): Flow<List<SearchCharacterResult>> {
         return flow {
-            emit(State.Loading)
-            try {
-                marvelDataBase.MarvelDao().getLastSearchCharacterResult().collect {
-                    emit(State.Success(it.map{ searchCharacterResultMapper.map(it) }))
-                }
-            }catch(e: Exception){
-                emit(State.Error(e.message.toString()))
-            }
+            marvelDataBase.MarvelDao().getSearchCharacterResultByName(name).collect {
+                emit(it.map{ searchCharacterResultMapper.map(it) }) }
         }
     }
 
-    override fun getLastCharacterByName(name: String): Flow<State<List<SearchCharacterResult>>> {
-        return flow {
-            emit(State.Loading)
-            try {
-                marvelDataBase.MarvelDao().getSearchCharacterResultByName(name).collect {
-                    emit(State.Success(it.map{ searchCharacterResultMapper.map(it) }))
-                }
-            }catch(e: Exception){
-                emit(State.Error(e.message.toString()))
-            }
 
-        }
-    }
 }

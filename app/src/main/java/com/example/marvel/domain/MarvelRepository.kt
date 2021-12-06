@@ -19,10 +19,8 @@ interface MarvelRepository{
     suspend fun getRefreshSeries()
 
 
-    fun getCharacterByName(): Flow<State<List<SearchCharacterResult>>>
-    suspend fun getRefreshCharacterByName(name: String)
+    fun getCharacterRecentSearch(): Flow<List<SearchCharacterResult>>
+    suspend fun getRefreshCharacterSearch(name: String)
+    fun getCharacterSearchByName(name: String): Flow<List<SearchCharacterResult>>
 
-    fun getLastCharacter(): Flow<State<List<SearchCharacterResult>>>
-
-    fun getLastCharacterByName(name: String): Flow<State<List<SearchCharacterResult>>>
 }

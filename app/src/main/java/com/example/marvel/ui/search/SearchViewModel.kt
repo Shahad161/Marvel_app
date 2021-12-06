@@ -1,10 +1,7 @@
 package com.example.marvel.ui.search
 
-import androidx.lifecycle.LiveData
-import androidx.lifecycle.MutableLiveData
-import androidx.lifecycle.asLiveData
-import androidx.lifecycle.viewModelScope
-import com.example.marvel.data.remote.State
+import android.util.Log
+import androidx.lifecycle.*
 import com.example.marvel.domain.MarvelRepository
 import com.example.marvel.domain.model.SearchCharacterResult
 import com.example.marvel.ui.base.BaseViewModel
@@ -20,39 +17,54 @@ class SearchViewModel @Inject constructor(
     private val repository: MarvelRepository
 ): BaseViewModel(), SearchInteractionListener {
 
-    val searchRecentResult = repository.getCharacterByName().asLiveData()
-    val searchResult = MutableLiveData<State<List<SearchCharacterResult>>>()
+    val searchRecentResult = repository.getCharacterRecentSearch().asLiveData()
+    val searchResult = MutableLiveData<List<SearchCharacterResult>>()
 
     private var _clickBack = MutableLiveData<Event<Boolean>>()
     val clickBack: LiveData<Event<Boolean>> = _clickBack
 
+    private var _notFound = MutableLiveData(false)
+    val notFound: LiveData<Boolean> = _notFound
+
     val searchName = MutableLiveData<String>()
-    var isExist = MutableLiveData<Boolean>()
+    private var isExist = MutableLiveData<Boolean>()
 
 
 
     fun onclickSearch(){
         viewModelScope.launch {
             checkIfItemInDataBase()
-            if (isExist.value == true){
-                searchName.value?.let {
-                    repository.getRefreshCharacterByName(it)
+            searchName.value?.let { name ->
+                if (isExist.value == true){
+                    repository.getCharacterSearchByName(name.lowercase()).collect {
+                        searchResult.postValue(it) }
                 }
-            }
-            else {
-
-                searchName.value?.let { repository.getLastCharacterByName(it) }?.collect {
-                    searchResult.postValue(it)
+                else{
+                    repository.getRefreshCharacterSearch(name.lowercase())
+                    searchName.value?.let { repository.getCharacterSearchByName(name.lowercase()) }?.collect {
+                        searchResult.postValue(it)
+                        checkIfItemExist(it)
+                    }
                 }
             }
         }
     }
 
-    private suspend fun checkIfItemInDataBase(){
-        searchName.value?.let { repository.getLastCharacterByName(it) }?.collect {
-            if(!it.toData().isNullOrEmpty())
-                 isExist.postValue(false)
-            else isExist.postValue(true)
+    private fun  checkIfItemExist(list: List<SearchCharacterResult>) {
+        if (list.isNullOrEmpty())
+            _notFound.postValue(true)
+    }
+
+    private fun checkIfItemInDataBase(){
+        viewModelScope.launch {
+            searchName.value?.let { repository
+                .getCharacterSearchByName(it) }?.collect {
+                if(it.isNullOrEmpty()) {
+                    isExist.postValue(false)
+                }
+                else
+                    isExist.postValue(true)
+            }
         }
     }
 
@@ -61,6 +73,6 @@ class SearchViewModel @Inject constructor(
     }
 
 
-    override fun onClickCategory() {}
+    override fun onClickCategory() { }
 
 }
