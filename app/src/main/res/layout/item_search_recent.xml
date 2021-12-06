@@ -9,11 +9,15 @@
             name="item"
             type="com.example.marvel.domain.model.SearchCharacterResult" />
 
+        <variable
+            name="listener"
+            type="com.example.marvel.ui.search.SearchInteractionListener" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:onClick="@{() -> listener.onClickRecentItem(item.name)}"
         android:layout_margin="@dimen/margin_small">
 
         <TextView

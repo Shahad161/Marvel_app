@@ -3,10 +3,10 @@ package com.example.marvel.ui.search
 import android.os.Bundle
 import android.view.View
 import androidx.fragment.app.viewModels
+import androidx.navigation.fragment.findNavController
 import com.example.marvel.R
 import com.example.marvel.databinding.FragmentSearchBinding
 import com.example.marvel.ui.base.BaseFragment
-import com.example.marvel.ui.home.HomeFragmentDirections
 import com.example.marvel.util.extensions.goToFragment
 import com.example.marvel.util.extensions.observeEvent
 import dagger.hilt.android.AndroidEntryPoint
@@ -33,8 +33,13 @@ class SearchFragment : BaseFragment<FragmentSearchBinding, SearchViewModel>() {
     }
 
     private fun observeEvents(){
+
+        viewModel.clickItem.observeEvent(this) { id ->
+            view?.goToFragment(SearchFragmentDirections.actionSearchFragmentToDetailsFragment(id))
+        }
+
         viewModel.clickBack.observeEvent(this) {
-            view?.goToFragment(SearchFragmentDirections.actionSearchFragmentToHomeFragment())
+            findNavController().navigateUp()
         }
     }
 

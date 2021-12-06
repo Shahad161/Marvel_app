@@ -7,7 +7,7 @@ import com.example.marvel.domain.model.SearchCharacterResult
 
 class SearchRecyclerAdapter(
     items: List<SearchCharacterResult>,
-    private val listener: SearchInteractionListener
+    listener: SearchInteractionListener
 ) : BaseRecyclerAdapter<SearchCharacterResult>(items, listener) {
     override val layoutId: Int = R.layout.item_search
 
@@ -20,5 +20,6 @@ class SearchRecyclerAdapter(
 }
 
 interface SearchInteractionListener: BaseInteractionListener {
-    fun onClickCategory()
+    fun onClickItem(itemId: Int)
+    fun onClickRecentItem(name: String)
 }

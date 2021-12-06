@@ -28,6 +28,9 @@ class SearchViewModel @Inject constructor(
     private var _recentSearch= MutableLiveData(true)
     val recentSearch: LiveData<Boolean> = _recentSearch
 
+    private var _clickItem= MutableLiveData<Event<Int>>()
+    val clickItem: LiveData<Event<Int>> = _clickItem
+
 
     val searchName = MutableLiveData<String>()
     private var isExist = MutableLiveData<Boolean>()
@@ -82,6 +85,15 @@ class SearchViewModel @Inject constructor(
     }
 
 
-    override fun onClickCategory() { }
+
+    override fun onClickItem(itemId: Int) {
+        _clickItem.postValue(Event(itemId))
+    }
+
+    override fun onClickRecentItem(name: String) {
+        searchName.value = name
+        onclickSearch()
+    }
+
 
 }

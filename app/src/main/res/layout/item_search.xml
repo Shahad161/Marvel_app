@@ -11,11 +11,16 @@
             type="com.example.marvel.domain.model.SearchCharacterResult"
             />
 
+        <variable
+            name="listener"
+            type="com.example.marvel.ui.search.SearchInteractionListener" />
+
     </data>
 
     <androidx.cardview.widget.CardView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:onClick="@{() -> listener.onClickItem(item.id)}"
         android:layout_margin="8dp">
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
