@@ -40,6 +40,8 @@
     <dimen name="text2x">18sp</dimen>
     <dimen name="text3x">20sp</dimen>
     <dimen name="text4x">22sp</dimen>
+    <dimen name="text_large2x">32sp</dimen>
+
 
 
     <!--   radius    -->

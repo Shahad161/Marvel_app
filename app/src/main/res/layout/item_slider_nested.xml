@@ -12,21 +12,43 @@
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
+        android:layout_marginVertical="@dimen/margin_normal"
         android:layout_height="wrap_content">
+
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="32dp"
+            android:layout_marginTop="32dp"
+            android:elevation="@dimen/elevation_small"
+            android:text="Last Year Series"
+            android:textColor="@color/white"
+            android:textSize="@dimen/text_large2x"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="@+id/image_slider" />
 
         <com.denzcoskun.imageslider.ImageSlider
             android:id="@+id/image_slider"
             android:layout_width="match_parent"
-            android:layout_height="180dp"
+            android:layout_height="220dp"
             app:iss_auto_cycle="true"
             app:iss_delay="0"
-            app:iss_period="1750"
             app:iss_error_image="@drawable/error"
-            app:setSliderImagesList="@{item}"
-            app:layout_constraintBottom_toBottomOf="parent"
+            app:iss_period="1750"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"/>
+            app:layout_constraintTop_toTopOf="parent"
+            app:setSliderImagesList="@{item}" />
+
+        <View
+            android:layout_width="wrap_content"
+            android:layout_height="0dp"
+            android:background="@drawable/transparency_layer"
+            app:layout_constraintBottom_toBottomOf="@+id/image_slider"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="@+id/image_slider" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 

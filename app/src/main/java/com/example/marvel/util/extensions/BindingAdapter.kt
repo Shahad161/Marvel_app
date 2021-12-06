@@ -47,9 +47,9 @@ fun <T> visibility(view: View, value: Boolean?) {
 
 @BindingAdapter(value = ["app:setSliderImagesList"])
 fun setSliderImages(slider: ImageSlider, images: List<Characters>?){
-    images?.map { image ->
-        SlideModel(image.imgUrl)
-    }?.let { list ->
+    Constants.imge.map {
+        SlideModel(it)
+    }.let { list ->
         slider.setImageList(list, ScaleTypes.FIT)
     }
 }
