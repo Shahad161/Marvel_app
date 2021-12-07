@@ -19,19 +19,29 @@
         android:layout_height="match_parent"
         tools:context=".ui.category.comics.ComicsFragment">
 
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/appCompatButton"
+            android:layout_width="36dp"
+            android:layout_height="36dp"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="16dp"
+            android:background="@drawable/back_icon"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/comics_recycler"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            app:spanCount="2"
+            android:layout_height="0dp"
+            android:layout_marginTop="8dp"
             app:items="@{viewModel.comics}"
             app:layoutManager="androidx.recyclerview.widget.GridLayoutManager"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            tools:listitem="@layout/item_comics"
-            />
+            app:layout_constraintTop_toBottomOf="@+id/appCompatButton"
+            app:spanCount="2"
+            tools:listitem="@layout/item_comics" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

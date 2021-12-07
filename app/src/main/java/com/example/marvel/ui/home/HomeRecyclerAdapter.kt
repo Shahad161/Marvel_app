@@ -66,6 +66,7 @@ class HomeRecyclerAdapter(
         when (val currentItem = itemsNested[position]) {
             is HomeItem.SliderType -> {
                 holder.binding.setVariable(BR.item, currentItem.items)
+                holder.binding.setVariable(BR.listener, listener)
             }
             is HomeItem.CharacterType -> {
                 holder.setVariableAdapter(CharactersRecycler(currentItem.items, listener))
@@ -99,7 +100,7 @@ class HomeRecyclerAdapter(
 }
 
 interface HomeInteractionListener : BaseInteractionListener {
-    fun onClickSliderItem()
+    fun onClickSliderButton()
 }
 
 

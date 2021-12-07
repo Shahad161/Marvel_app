@@ -33,11 +33,11 @@ class HomeFragment : BaseFragment<FragmentHomeBinding, HomeViewModel>() {
     private fun setUp() {
         viewModel.apply {
             (binding.homeRecycler.adapter as HomeRecyclerAdapter?)?.apply {
-                addItem(characters) {
-                    addItem(HomeItem.CharacterType(it))
+                addItem(seriesSlider) {
+                    addItem(HomeItem.SliderType(it))
                 }
                 addItem(characters) {
-                    addItem(HomeItem.SliderType(it))
+                    addItem(HomeItem.CharacterType(it))
                 }
                 addItem(comics) {
                     addItem(HomeItem.ComicsType(it))
@@ -51,9 +51,15 @@ class HomeFragment : BaseFragment<FragmentHomeBinding, HomeViewModel>() {
     }
 
     private fun observeEvents(){
+
         viewModel.clickSearch.observeEvent(this) {
             view?.goToFragment(HomeFragmentDirections.actionHomeFragmentToSearchFragment())
         }
+
+        viewModel.clickSliderButton.observeEvent(this) {
+            view?.goToFragment(HomeFragmentDirections.actionHomeFragmentToSeriesFragment())
+        }
+
     }
 
     private fun <T>addItem(

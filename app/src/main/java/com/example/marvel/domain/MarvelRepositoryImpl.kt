@@ -93,7 +93,6 @@ class MarvelRepositoryImpl(
     override suspend fun getRefreshCharacterSearch(name: String) {
         try {
             apiService.getCharacterByName(name).body()?.dataContainer?.items?.map {
-
                 searchCharacterResultEntityMapper.map(it)
             }?.let { marvelDataBase.MarvelDao().insertSearchCharacterResult(it.map { it }) }
         }catch(e: Exception){
@@ -105,6 +104,14 @@ class MarvelRepositoryImpl(
         return flow {
             marvelDataBase.MarvelDao().getSearchCharacterResultByName(name).collect {
                 emit(it.map{ searchCharacterResultMapper.map(it) }) }
+        }
+    }
+
+    override fun getSeriesForSlider(): Flow<List<Series>> {
+        return flow {
+            marvelDataBase.MarvelDao().getSeriesForSlider(2020).collect {
+                Log.i("sss", it.toString())
+                emit(it.map{ seriesMapper.map(it) }) }
         }
     }
 

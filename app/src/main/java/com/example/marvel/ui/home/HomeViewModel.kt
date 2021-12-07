@@ -1,5 +1,6 @@
 package com.example.marvel.ui.home
 
+import android.util.Log
 import androidx.lifecycle.*
 import com.example.marvel.domain.*
 import com.example.marvel.ui.base.BaseViewModel
@@ -18,13 +19,19 @@ class HomeViewModel @Inject constructor(
     var characters = repository.getCharacter().asLiveData()
     var comics = repository.getComics().asLiveData()
     var series = repository.getSeries().asLiveData()
+    var seriesSlider = repository.getSeriesForSlider().asLiveData()
+
 
     private var _clickSearch = MutableLiveData<Event<Boolean>>()
     val clickSearch: LiveData<Event<Boolean>> = _clickSearch
 
+    private var _clickSliderButton = MutableLiveData<Event<Boolean>>()
+    val clickSliderButton: LiveData<Event<Boolean>> = _clickSliderButton
+
 
     init{
         viewModelScope.launch {
+            repository.getSeriesForSlider()
             repository.getRefreshComics()
             repository.getRefreshSeries()
             repository.getRefreshCharacters()
@@ -48,7 +55,9 @@ class HomeViewModel @Inject constructor(
         _clickSearch.postValue(Event(true))
     }
 
+    override fun onClickSliderButton() {
+        _clickSliderButton.postValue(Event(true))
+    }
 
-    override fun onClickSliderItem() { }
 
 }

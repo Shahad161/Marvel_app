@@ -15,6 +15,9 @@
         <action
             android:id="@+id/action_homeFragment_to_detailsFragment"
             app:destination="@id/detailsFragment" />
+        <action
+            android:id="@+id/action_homeFragment_to_seriesFragment"
+            app:destination="@id/seriesFragment" />
     </fragment>
     <fragment
         android:id="@+id/searchFragment"
@@ -44,4 +47,8 @@
             android:name="id"
             app:argType="integer" />
     </fragment>
+    <fragment
+        android:id="@+id/seriesFragment"
+        android:name="com.example.marvel.ui.category.series.SeriesFragment"
+        android:label="SeriesFragment" />
 </navigation>

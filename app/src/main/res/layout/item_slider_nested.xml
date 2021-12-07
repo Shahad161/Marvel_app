@@ -5,8 +5,12 @@
     <data>
 
         <variable
+            name="listener"
+            type="com.example.marvel.ui.home.HomeInteractionListener"/>
+
+        <variable
             name="item"
-            type="java.util.List&lt;com.example.marvel.domain.model.Characters&gt;"/>
+            type="java.util.List&lt;com.example.marvel.domain.model.Series&gt;"/>
 
     </data>
 
@@ -35,10 +39,12 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="32dp"
+            android:elevation="@dimen/elevation_small"
             android:background="@drawable/meun_background"
             android:padding="@dimen/padding2x"
             android:textStyle="bold"
             android:text="@string/see_all_our_series"
+            android:onClick="@{() -> listener.onClickSliderButton()}"
             android:textColor="@color/text_header"
             app:layout_constraintBottom_toTopOf="@+id/image_slider"
             app:layout_constraintStart_toStartOf="@+id/textView3"
@@ -57,7 +63,8 @@
             app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:setSliderImagesList="@{item}" />
+            app:setSliderImagesList="@{item}"
+            />
 
         <View
             android:layout_width="wrap_content"

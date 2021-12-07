@@ -11,6 +11,7 @@ import com.denzcoskun.imageslider.models.SlideModel
 import com.example.marvel.domain.model.Characters
 import com.example.marvel.ui.base.BaseRecyclerAdapter
 import com.denzcoskun.imageslider.constants.ScaleTypes
+import com.example.marvel.domain.model.Series
 
 
 @BindingAdapter(value = ["app:items"])
@@ -46,10 +47,10 @@ fun <T> visibility(view: View, value: Boolean?) {
 }
 
 @BindingAdapter(value = ["app:setSliderImagesList"])
-fun setSliderImages(slider: ImageSlider, images: List<Characters>?){
-    Constants.imge.map {
-        SlideModel(it)
-    }.let { list ->
+fun setSliderImages(slider: ImageSlider, images: List<Series>?){
+    images?.map { image ->
+        SlideModel(image.imgUrl)
+    }?.let { list ->
         slider.setImageList(list, ScaleTypes.FIT)
     }
 }

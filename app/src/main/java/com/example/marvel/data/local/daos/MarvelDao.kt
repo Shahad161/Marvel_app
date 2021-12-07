@@ -41,5 +41,7 @@ interface MarvelDao {
     @Query("Select * From Series_table")
     fun getSeries(): Flow<List<SeriesEntity>>
 
+    @Query("Select * From Series_table Where startYear = :startYear ORDER BY name DESC LIMIT 4")
+    fun getSeriesForSlider(startYear: Int): Flow<List<SeriesEntity>>
 
 }

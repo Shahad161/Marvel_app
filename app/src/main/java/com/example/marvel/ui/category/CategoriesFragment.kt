@@ -44,7 +44,6 @@ class CategoriesFragment : BaseFragment<FragmentCategoriesBinding, CategoriesVie
     private fun initViewPager() {
         binding.viewPager.apply {
             adapter = CategoriesPagerAdapter(this@CategoriesFragment, fragmentsList)
-            isUserInputEnabled = false
         }
     }
 
