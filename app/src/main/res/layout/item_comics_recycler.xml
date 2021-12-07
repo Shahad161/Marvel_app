@@ -18,12 +18,12 @@
             android:id="@+id/textView"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="@dimen/margin_normal"
+            android:layout_marginStart="24dp"
             android:layout_marginTop="@dimen/margin_normal"
-            android:text="@string/comics"
-            android:textSize="@dimen/text3x"
             android:fontFamily="@font/andada"
+            android:text="@string/comics"
             android:textColor="@color/black"
+            android:textSize="@dimen/text2x"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 

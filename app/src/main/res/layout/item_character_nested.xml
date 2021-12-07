@@ -14,7 +14,8 @@
         android:layout_height="wrap_content"
         android:background="@drawable/item_fram"
         android:padding="@dimen/padding2x"
-        android:layout_margin="@dimen/margin_normal">
+        android:layout_margin="@dimen/margin_small"
+        >
 
         <androidx.cardview.widget.CardView
             android:id="@+id/cardView"
@@ -38,6 +39,7 @@
         </androidx.cardview.widget.CardView>
 
         <TextView
+            android:id="@+id/textView4"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginStart="8dp"
