@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <data>
+
+        <variable
+            name="listener"
+            type="com.example.marvel.ui.home.HomeInteractionListener"/>
+
+        <variable
+            name="item"
+            type="java.util.List&lt;com.example.marvel.domain.model.Series&gt;"/>
+
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginVertical="@dimen/margin_normal">
+
+
+        <TextView
+            android:id="@+id/textView3"
+            android:layout_width="280dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="32dp"
+            android:elevation="@dimen/elevation_small"
+            android:fontFamily="@font/andada"
+            android:text="@string/unlimited_series_and_more"
+            android:textColor="@color/white"
+            android:textSize="@dimen/text_large2x"
+            app:layout_constraintBottom_toTopOf="@+id/appCompatButton2"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/image_slider" />
+
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/appCompatButton2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="32dp"
+            android:elevation="@dimen/elevation_small"
+            android:background="@drawable/meun_background"
+            android:padding="@dimen/padding2x"
+            android:textStyle="bold"
+            android:text="@string/see_all_our_series"
+            android:onClick="@{() -> listener.onClickSliderButton()}"
+            android:textColor="@color/text_header"
+            app:layout_constraintBottom_toTopOf="@+id/image_slider"
+            app:layout_constraintStart_toStartOf="@+id/textView3"
+            app:layout_constraintTop_toBottomOf="@+id/textView3" />
+
+
+        <com.denzcoskun.imageslider.ImageSlider
+            android:id="@+id/image_slider"
+            android:layout_width="match_parent"
+            android:layout_height="220dp"
+            app:iss_auto_cycle="true"
+            app:iss_delay="0"
+            app:iss_error_image="@drawable/error"
+            app:iss_period="1750"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:setSliderImagesList="@{item}"
+            />
+
+        <View
+            android:layout_width="wrap_content"
+            android:layout_height="0dp"
+            android:background="@drawable/transparency_layer"
+            app:layout_constraintBottom_toBottomOf="@+id/image_slider"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="@+id/image_slider" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</layout>

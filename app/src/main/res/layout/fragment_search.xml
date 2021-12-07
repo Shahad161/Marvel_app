@@ -1,0 +1,108 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <variable
+            name="viewModel"
+            type="com.example.marvel.ui.search.SearchViewModel" />
+
+        <variable
+            name="listener"
+            type="com.example.marvel.ui.search.SearchInteractionListener" />
+
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:padding="@dimen/padding_normal"
+        tools:context=".ui.search.SearchFragment">
+
+        <com.airbnb.lottie.LottieAnimationView
+            android:id="@+id/loading"
+            android:layout_width="300dp"
+            android:layout_height="300dp"
+            app:visibility="@{viewModel.notFound}"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:lottie_autoPlay="true"
+            app:lottie_loop="true"
+            app:lottie_rawRes="@raw/not_found" />
+
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/back_button"
+            android:layout_width="24dp"
+            android:layout_height="24dp"
+            android:background="@drawable/arrow_back"
+            android:onClick="@{() -> viewModel.onClickBack()}"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <EditText
+            android:id="@+id/search_bar"
+            style="@style/SearchBarStyle"
+            android:layout_height="48dp"
+            android:layout_marginTop="16dp"
+            android:background="@drawable/item_fram"
+            android:focusedByDefault="true"
+            android:hint="@string/search"
+            android:paddingHorizontal="16dp"
+            android:paddingVertical="8dp"
+            android:text="@={viewModel.searchName}"
+            android:transitionName="search"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/back_button"
+            app:onclickSearch="@{viewModel::onclickSearch}" />
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/search_recycler"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_marginTop="16dp"
+            android:orientation="vertical"
+            app:items="@{viewModel.searchResult}"
+            app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/search_bar"
+            app:spanCount="2"
+            tools:listitem="@layout/item_search" />
+
+        <TextView
+            android:id="@+id/textView5"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="24dp"
+            android:text="@string/recent"
+            android:textColor="@color/text_header"
+            android:textSize="@dimen/text_normal"
+            android:textStyle="bold"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/search_bar"
+            app:visibility="@{viewModel.recentSearch}" />
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/search_recent_recycler"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:visibility="visible"
+            app:items="@{viewModel.searchRecentResult}"
+            app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/textView5"
+            app:spanCount="2"
+            app:visibility="@{viewModel.recentSearch}"
+            tools:listitem="@layout/item_search_recent" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>
