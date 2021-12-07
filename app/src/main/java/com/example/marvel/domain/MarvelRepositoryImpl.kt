@@ -7,9 +7,10 @@ import com.example.marvel.data.remote.*
 import com.example.marvel.domain.mapper.*
 import kotlinx.coroutines.flow.*
 import java.lang.Exception
+import javax.inject.Inject
 
 
-class MarvelRepositoryImpl(
+class MarvelRepositoryImpl @Inject constructor(
     private val apiService: MarvelService,
     private val marvelDataBase: MarvelDataBase,
     private val characterMapper: CharacterMapper,

@@ -8,6 +8,10 @@
             name="adapter"
             type="com.example.marvel.ui.home.ComicsRecycler" />
 
+        <variable
+            name="listener"
+            type="com.example.marvel.ui.home.HomeInteractionListener"/>
+
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -18,7 +22,7 @@
             android:id="@+id/textView"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="24dp"
+            android:layout_marginStart="16dp"
             android:layout_marginTop="@dimen/margin_normal"
             android:fontFamily="@font/andada"
             android:text="@string/comics"

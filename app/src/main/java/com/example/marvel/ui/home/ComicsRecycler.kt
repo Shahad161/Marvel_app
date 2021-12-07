@@ -1,5 +1,6 @@
 package com.example.marvel.ui.home
 
+import android.view.ViewGroup
 import com.example.marvel.R
 import com.example.marvel.domain.model.Comics
 import com.example.marvel.ui.base.BaseRecyclerAdapter
