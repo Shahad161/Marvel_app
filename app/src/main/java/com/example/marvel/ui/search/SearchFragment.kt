@@ -33,11 +33,6 @@ class SearchFragment : BaseFragment<FragmentSearchBinding, SearchViewModel>() {
     }
 
     private fun observeEvents(){
-
-        viewModel.clickItem.observeEvent(this) { id ->
-            view?.goToFragment(SearchFragmentDirections.actionSearchFragmentToDetailsFragment(id))
-        }
-
         viewModel.clickBack.observeEvent(this) {
             findNavController().navigateUp()
         }

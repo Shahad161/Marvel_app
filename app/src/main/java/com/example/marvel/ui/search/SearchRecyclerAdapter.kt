@@ -20,6 +20,5 @@ class SearchRecyclerAdapter(
 }
 
 interface SearchInteractionListener: BaseInteractionListener {
-    fun onClickItem(itemId: Int)
     fun onClickRecentItem(name: String)
 }

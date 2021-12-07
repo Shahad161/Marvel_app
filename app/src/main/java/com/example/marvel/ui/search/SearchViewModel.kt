@@ -84,12 +84,6 @@ class SearchViewModel @Inject constructor(
         _clickBack.postValue(Event(true))
     }
 
-
-
-    override fun onClickItem(itemId: Int) {
-        _clickItem.postValue(Event(itemId))
-    }
-
     override fun onClickRecentItem(name: String) {
         searchName.value = name
         onclickSearch()
