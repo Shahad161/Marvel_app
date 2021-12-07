@@ -48,6 +48,8 @@
     <dimen name="radius_small">8dp</dimen>
     <dimen name="radius_normal">16dp</dimen>
     <dimen name="radius_large">24dp</dimen>
+    <dimen name="radius_large2x">32dp</dimen>
+
 
 
     <!--   elevation   -->

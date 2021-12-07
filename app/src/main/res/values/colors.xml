@@ -9,7 +9,11 @@
     <color name="white">#FFFFFFFF</color>
 
 
-    <color name="background">#FCFCFD</color>
-    <color name="text_header">#0A090A</color>
+    <color name="background">#EBEBEB</color>
+    <color name="text_header">#171B1F</color>
+    <color name="text_second">#9F9FA2</color>
+    <color name="purple">#4837EF</color>
+    <color name="second_gray">#5C5C5C</color>
+    <color name="lines">#270A090A</color>
 
 </resources>
