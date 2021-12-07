@@ -1,10 +1,13 @@
 package com.example.marvel.ui.category.series
 
 import android.util.Log
+import androidx.lifecycle.LiveData
+import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.asLiveData
 import androidx.lifecycle.viewModelScope
 import com.example.marvel.domain.MarvelRepository
 import com.example.marvel.ui.base.BaseViewModel
+import com.example.marvel.util.extensions.Event
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.launch
@@ -18,13 +21,9 @@ class SeriesViewModel @Inject constructor(
 
     val series = repository.getSeries().asLiveData()
 
-    fun jildsa(){
-        viewModelScope.launch{
-            repository.getSeries().collect {
-                Log.i("aaa", it.toString())
-            }
-        }
-    }
+    private var _clickBack = MutableLiveData<Event<Boolean>>()
+    val clickBack: LiveData<Event<Boolean>> = _clickBack
+
 
     init {
         viewModelScope.launch {
@@ -32,8 +31,14 @@ class SeriesViewModel @Inject constructor(
         }
     }
 
+
+    fun onClickBack(){
+        _clickBack.postValue(Event(true))
+    }
+
     override fun onClickCategory() {
 
     }
+
 
 }

@@ -47,10 +47,12 @@ class CategoriesFragment : BaseFragment<FragmentCategoriesBinding, CategoriesVie
         }
     }
 
+
     private fun observeEvents(){
         viewModel.clickBack.observeEvent(this) {
             findNavController().navigateUp()
         }
     }
+
 
 }
