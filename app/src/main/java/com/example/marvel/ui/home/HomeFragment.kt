@@ -26,8 +26,8 @@ class HomeFragment : BaseFragment<FragmentHomeBinding, HomeViewModel>() {
             homeRecycler.adapter =
                 HomeRecyclerAdapter(mutableListOf(), this@HomeFragment.viewModel)
         }
-        setUp()
         observeEvents()
+        setUp()
     }
 
     private fun setUp() {
@@ -58,6 +58,10 @@ class HomeFragment : BaseFragment<FragmentHomeBinding, HomeViewModel>() {
 
         viewModel.clickSliderButton.observeEvent(this) {
             view?.goToFragment(HomeFragmentDirections.actionHomeFragmentToSeriesFragment())
+        }
+
+        viewModel.clickSeeMoreComics.observeEvent(this) {
+            view?.goToFragment(HomeFragmentDirections.actionHomeFragmentToComicsFragment())
         }
 
     }

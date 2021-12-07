@@ -7,6 +7,10 @@
         <variable
             name="item"
             type="com.example.marvel.domain.model.Characters" />
+
+        <variable
+            name="listener"
+            type="com.example.marvel.ui.home.HomeInteractionListener"/>
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout

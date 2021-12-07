@@ -27,10 +27,12 @@
         <entry key="..\:/projects/Marvel/app/src/main/res/layout/fragment_search.xml" value="0.264" />
         <entry key="..\:/projects/Marvel/app/src/main/res/layout/fragment_series.xml" value="0.21422101449275363" />
         <entry key="..\:/projects/Marvel/app/src/main/res/layout/fragment_stories.xml" value="0.1" />
-        <entry key="..\:/projects/Marvel/app/src/main/res/layout/item_character_nested.xml" value="0.23645833333333333" />
+        <entry key="..\:/projects/Marvel/app/src/main/res/layout/item_all_comics.xml" value="0.23645833333333333" />
+        <entry key="..\:/projects/Marvel/app/src/main/res/layout/item_character_nested.xml" value="0.1" />
         <entry key="..\:/projects/Marvel/app/src/main/res/layout/item_characters.xml" value="0.23645833333333333" />
         <entry key="..\:/projects/Marvel/app/src/main/res/layout/item_characters_recycler.xml" value="0.264" />
         <entry key="..\:/projects/Marvel/app/src/main/res/layout/item_comics.xml" value="0.23645833333333333" />
+        <entry key="..\:/projects/Marvel/app/src/main/res/layout/item_comics_details.xml" value="0.23645833333333333" />
         <entry key="..\:/projects/Marvel/app/src/main/res/layout/item_comics_nested.xml" value="0.23645833333333333" />
         <entry key="..\:/projects/Marvel/app/src/main/res/layout/item_comics_recycler.xml" value="0.23645833333333333" />
         <entry key="..\:/projects/Marvel/app/src/main/res/layout/item_nested.xml" value="0.23645833333333333" />

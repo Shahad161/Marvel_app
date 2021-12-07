@@ -92,14 +92,15 @@ class HomeRecyclerAdapter(
 
     companion object {
         const val TYPE_SLIDER = 1
-        const val TYPE_CHARACTER = 3
-        const val TYPE_COMICS = 2
+        const val TYPE_CHARACTER = 2
+        const val TYPE_COMICS = 3
         const val TYPE_SERIES = 4
     }
 
 }
 
 interface HomeInteractionListener : BaseInteractionListener {
+    fun onClickSeeMoreComics()
     fun onClickSliderButton()
 }
 
