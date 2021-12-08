@@ -101,6 +101,7 @@ class HomeRecyclerAdapter(
 
 interface HomeInteractionListener : BaseInteractionListener {
     fun onClickSeeMoreComics()
+    fun onClickSeeMoreCharacters()
     fun onClickSliderButton()
 }
 
