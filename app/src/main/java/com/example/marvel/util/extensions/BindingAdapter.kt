@@ -80,17 +80,7 @@ fun <T> showOnLoadingNew(view: View, state: State<T>?) {
 }
 
 
-@BindingAdapter(value = ["app:showOnSuccess"])
-fun <T> showOnSuccess(view: View, state: State<T>?) {
-    view.isVisible = (state is State.Success)
-}
-
-@BindingAdapter(value = ["app:showOnError"])
-fun <T> showOnError(view: View, state: State<T>?) {
-    view.isVisible = (state is State.Error)
-}
-
 @BindingAdapter(value = ["app:showOnLoading"])
-fun <T> showOnLoading(view: View, state: State<T>?) {
+fun <T> showOnLoading(view: View, state: State<List<T>>?) {
     view.isVisible = (state is State.Loading)
 }
