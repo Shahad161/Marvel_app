@@ -20,8 +20,4 @@ class ComicsRecyclerAdapter(
 
 }
 
-interface ComicsInteractionListener: BaseInteractionListener {
-
-    fun onClickCategory()
-
-}
+interface ComicsInteractionListener: BaseInteractionListener { }

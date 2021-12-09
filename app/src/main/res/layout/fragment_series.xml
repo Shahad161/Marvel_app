@@ -35,9 +35,10 @@
             android:layout_width="match_parent"
             android:layout_height="0dp"
             android:layout_marginTop="8dp"
-            app:items="@{viewModel.series}"
+            app:last="@{viewModel.requestMoreProducts}"
+            app:items="@{viewModel.series.toData()}"
             app:layoutManager="androidx.recyclerview.widget.GridLayoutManager"
-            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintBottom_toTopOf="@+id/new_loading"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toStartOf="parent"
@@ -45,6 +46,14 @@
             app:layout_constraintVertical_bias="1.0"
             app:spanCount="2"
             tools:listitem="@layout/item_series" />
+
+        <ProgressBar
+            android:id="@+id/new_loading"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            app:showOnLoadingNew="@{viewModel.loading}"
+            app:layout_constraintVertical_weight="7"
+            app:layout_constraintBottom_toBottomOf="parent" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 

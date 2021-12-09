@@ -34,6 +34,5 @@ class ComicsViewModel @Inject constructor(
         _clickBack.postValue(Event(true))
     }
 
-    override fun onClickCategory() { }
 
 }
