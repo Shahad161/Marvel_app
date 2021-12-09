@@ -5,12 +5,13 @@ import android.widget.*
 import android.view.View
 import androidx.core.view.isVisible
 import androidx.databinding.BindingAdapter
+import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.denzcoskun.imageslider.ImageSlider
 import com.denzcoskun.imageslider.models.SlideModel
-import com.example.marvel.domain.model.Characters
 import com.example.marvel.ui.base.BaseRecyclerAdapter
 import com.denzcoskun.imageslider.constants.ScaleTypes
+import com.example.marvel.data.remote.State
 import com.example.marvel.domain.model.Series
 
 
@@ -53,4 +54,43 @@ fun setSliderImages(slider: ImageSlider, images: List<Series>?){
     }?.let { list ->
         slider.setImageList(list, ScaleTypes.FIT)
     }
+}
+
+
+@BindingAdapter(value = ["app:last"])
+fun getMoreProducts(view: RecyclerView, scroll: () -> Unit) {
+    view.setOnScrollChangeListener { _, _, _, _, _ ->
+        if ((view.layoutManager as GridLayoutManager)
+                .findLastCompletelyVisibleItemPosition()
+            == (view.adapter?.itemCount?.minus(1))) {
+            scroll()
+        }
+    }
+}
+
+
+@BindingAdapter(value = ["app:showOnLoadingNew"])
+fun <T> showOnLoadingNew(view: View, state: State<T>?) {
+    view.visibility =
+        if (state is State.Loading) {
+            View.VISIBLE
+        } else {
+            View.GONE
+        }
+}
+
+
+@BindingAdapter(value = ["app:showOnSuccess"])
+fun <T> showOnSuccess(view: View, state: State<T>?) {
+    view.isVisible = (state is State.Success)
+}
+
+@BindingAdapter(value = ["app:showOnError"])
+fun <T> showOnError(view: View, state: State<T>?) {
+    view.isVisible = (state is State.Error)
+}
+
+@BindingAdapter(value = ["app:showOnLoading"])
+fun <T> showOnLoading(view: View, state: State<T>?) {
+    view.isVisible = (state is State.Loading)
 }

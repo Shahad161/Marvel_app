@@ -7,6 +7,7 @@ import androidx.navigation.fragment.findNavController
 import com.example.marvel.R
 import com.example.marvel.databinding.FragmentCategoriesBinding
 import com.example.marvel.ui.base.BaseFragment
+import com.example.marvel.ui.category.character.CharactersFragment
 import com.example.marvel.ui.category.comics.ComicsFragment
 import com.example.marvel.ui.category.series.SeriesFragment
 import com.example.marvel.util.extensions.*
@@ -21,7 +22,7 @@ class CategoriesFragment : BaseFragment<FragmentCategoriesBinding, CategoriesVie
     override val layoutId: Int = R.layout.fragment_categories
     override val viewModel: CategoriesViewModel by viewModels()
     override val viewModelClass = CategoriesViewModel::class.java
-    private val fragmentsList = listOf(ComicsFragment(), SeriesFragment())
+    private val fragmentsList = listOf( SeriesFragment(), CharactersFragment(), ComicsFragment())
 
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {

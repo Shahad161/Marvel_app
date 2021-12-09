@@ -29,6 +29,11 @@ class HomeViewModel @Inject constructor(
     private var _clickSeeMoreComics = MutableLiveData<Event<Boolean>>()
     val clickSeeMoreComics: LiveData<Event<Boolean>> = _clickSeeMoreComics
 
+    private var _clickSeeMoreCharacters = MutableLiveData<Event<Boolean>>()
+    val clickSeeMoreCharacters: LiveData<Event<Boolean>> = _clickSeeMoreCharacters
+
+
+
 
     init{
         viewModelScope.launch {
@@ -59,6 +64,10 @@ class HomeViewModel @Inject constructor(
 
     override fun onClickSeeMoreComics() {
         _clickSeeMoreComics.postValue(Event(true))
+    }
+
+    override fun onClickSeeMoreCharacters() {
+        _clickSeeMoreCharacters.postValue((Event(true)))
     }
 
 

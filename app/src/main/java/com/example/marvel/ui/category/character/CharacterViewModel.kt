@@ -1,4 +1,4 @@
-package com.example.marvel.ui.category.comics
+package com.example.marvel.ui.category.character
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
@@ -8,16 +8,16 @@ import com.example.marvel.domain.MarvelRepository
 import com.example.marvel.ui.base.BaseViewModel
 import com.example.marvel.util.extensions.Event
 import dagger.hilt.android.lifecycle.HiltViewModel
-import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 
-@HiltViewModel
-class ComicsViewModel @Inject constructor(
-    private val repository: MarvelRepository
-): BaseViewModel(), ComicsInteractionListener {
 
-    val comics =  repository.getComics().asLiveData(Dispatchers.IO)
+@HiltViewModel
+class CharacterViewModel @Inject constructor(
+    private val repository: MarvelRepository
+): BaseViewModel(), CharactersInteractionListener {
+
+    val characters =  repository.getCharacter().asLiveData()
 
     private var _clickBack = MutableLiveData<Event<Boolean>>()
     val clickBack: LiveData<Event<Boolean>> = _clickBack
@@ -26,9 +26,10 @@ class ComicsViewModel @Inject constructor(
 
     init {
         viewModelScope.launch {
-            repository.getRefreshComics()
+            repository.getRefreshCharacters()
         }
     }
+
 
     fun onClickBack(){
         _clickBack.postValue(Event(true))

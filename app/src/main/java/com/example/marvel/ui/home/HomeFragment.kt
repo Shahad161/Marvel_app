@@ -64,6 +64,10 @@ class HomeFragment : BaseFragment<FragmentHomeBinding, HomeViewModel>() {
             view?.goToFragment(HomeFragmentDirections.actionHomeFragmentToComicsFragment())
         }
 
+        viewModel.clickSeeMoreCharacters.observeEvent(this) {
+            view?.goToFragment(HomeFragmentDirections.actionHomeFragmentToCharactersFragment())
+        }
+
     }
 
     private fun <T>addItem(

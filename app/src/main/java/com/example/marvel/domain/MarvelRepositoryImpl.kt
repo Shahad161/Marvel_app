@@ -4,6 +4,9 @@ import android.util.Log
 import com.example.marvel.data.local.MarvelDataBase
 import com.example.marvel.domain.model.*
 import com.example.marvel.data.remote.*
+import com.example.marvel.data.remote.respons.BaseResponse
+import com.example.marvel.data.remote.respons.SeriesDto
+import com.example.marvel.data.remote.respons.comics.ComicsDto
 import com.example.marvel.domain.mapper.*
 import kotlinx.coroutines.flow.*
 import java.lang.Exception
@@ -21,7 +24,8 @@ class MarvelRepositoryImpl @Inject constructor(
     private val seriesMapper: SeriesMapper,
     private val searchCharacterResultMapper: SearchCharacterResultMapper,
     private val searchCharacterResultEntityMapper: SearchCharacterResultEntityMapper,
-
+    private val serierDtoToObjectMapper: SerierDtoToObjectMapper,
+    private val comicsDtoToObjectMapper: ComicsDtoToObjectMapper
     ): MarvelRepository {
 
     override fun getCharacter(): Flow<List<Characters>> {
@@ -51,6 +55,19 @@ class MarvelRepositoryImpl @Inject constructor(
         }
     }
 
+    override fun getComicsResponse(): Flow<State<Item>> {
+        return flow {
+            emit(State.Loading)
+            try {
+                apiService.getComics().body()?.dataContainer?.items?.map {
+                    emit(State.Success(comicsDtoToObjectMapper.map(it)))
+                }
+            }catch(e: Exception){
+                State.Error(e.message.toString())
+            }
+        }
+    }
+
     override suspend fun getRefreshComics() {
         try {
             apiService.getComics().body()?.dataContainer?.items?.map {
@@ -66,6 +83,19 @@ class MarvelRepositoryImpl @Inject constructor(
         return flow {
             marvelDataBase.MarvelDao().getSeries().collect {
             emit(it.map { seriesMapper.map(it) })
+            }
+        }
+    }
+
+    override fun getSeriesResponse(): Flow<State<List<Item>>?> {
+        return flow {
+            emit(State.Loading)
+            try {
+                emit(State.Success(apiService.getSeries().body()?.dataContainer?.items?.map {
+                    serierDtoToObjectMapper.map(it)
+                }))
+            }catch(e: Exception){
+                State.Error(e.message.toString())
             }
         }
     }

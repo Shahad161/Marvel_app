@@ -22,6 +22,8 @@ object RepositoryModule {
                           comicsObjMapper: ComicsMapper,
                           seriesEntityMapper: SeriesEntityMapper,
                           seriesMapper: SeriesMapper,
+                          serierDtoToObjectMapper: SerierDtoToObjectMapper,
+                          comicsDtoToObjectMapper: ComicsDtoToObjectMapper,
                           marvelDataBase: MarvelDataBase,
                           apiService: MarvelService): MarvelRepository{
         return MarvelRepositoryImpl(
@@ -34,7 +36,9 @@ object RepositoryModule {
             seriesEntityMapper,
             seriesMapper,
             searchCharacterResultMapper,
-            searchCharacterResultEntityMapper
+            searchCharacterResultEntityMapper,
+            serierDtoToObjectMapper,
+            comicsDtoToObjectMapper
         )
     }
 
@@ -66,5 +70,10 @@ object RepositoryModule {
     @Provides
     fun provideSeriesMapper() = SeriesMapper()
 
+    @Provides
+    fun provideSeriesToObjectMapper() = SerierDtoToObjectMapper()
+
+    @Provides
+    fun provideComicsToObjectMapper() = ComicsDtoToObjectMapper()
 
 }
