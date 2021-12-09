@@ -2,18 +2,13 @@ package com.example.marvel.ui.category.series
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
-import androidx.lifecycle.asLiveData
 import androidx.lifecycle.viewModelScope
 import com.example.marvel.data.remote.State
-import com.example.marvel.data.remote.respons.BaseResponse
-import com.example.marvel.data.remote.respons.SeriesDto
-import com.example.marvel.data.remote.respons.comics.ComicsDto
 import com.example.marvel.domain.MarvelRepository
 import com.example.marvel.domain.model.Item
 import com.example.marvel.ui.base.BaseViewModel
 import com.example.marvel.util.extensions.Event
 import dagger.hilt.android.lifecycle.HiltViewModel
-import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.launch
 import javax.inject.Inject
@@ -36,7 +31,6 @@ class SeriesViewModel @Inject constructor(
 
     init {
         viewModelScope.launch {
-            repository.getRefreshSeries()
             repository.getSeriesResponse().collect {
                 _series.postValue(it)
             }
